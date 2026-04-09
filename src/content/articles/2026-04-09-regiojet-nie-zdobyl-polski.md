@@ -1,8 +1,6 @@
 ---
 title: "RegioJet nie zdobył Polski"
-excerpt: |
-  Czeski przewoźnik RegioJet wjechał na polskie tory z obietnicą rewolucji, lecz zamiast wykorzystać swoją dynamikę,
-  utopił szansę w chaosie kadrowym, fatalnej obsłudze pasażerów i walce z wiatrakami, którą sam sobie zafundował.
+excerpt: "Czeski przewoźnik RegioJet wjechał na polskie tory z obietnicą rewolucji, lecz zamiast wykorzystać swoją dynamikę, utopił szansę w chaosie kadrowym, fatalnej obsłudze pasażerów i walce z wiatrakami, którą sam sobie zafundował."
 date: 2026-04-09
 readTime: "8 min"
 tags:
@@ -32,10 +30,10 @@ coverUrl: "https://images.unsplash.com/photo-1768751536514-5f7878f5421c?q=80&w=1
 
 RegioJet wjechał na polskie tory 18 września 2025 roku, jako trzeci, niezależny od starej grupy PKP przewoźnik na
 polskim rynku przewozów dalekobieżnych (po LeoExpress oraz SKPL - shortlines). Był to poniekąd rewolucyjny moment:
-portale branżowe, ale też i ogólne coraz szerzej mówiły o faktycznej konkurencji dla polskiej kolei. Rozpisywały się o nowej epoce podróżowania pociągiem, o nowej jakości, o magicznym
-wolnym rynku. Z pompatycznych zapowiedzi, powtarzanych na setkach grup internetowych, z wielkiego zachwytu i wręcz
-rozpalonej ojkofobii, można było odnieść wrażenie, że RegioJet to będzie coś na miarę pierwszej w Polsce restauracji
-McDonald's. Może faktycznie jednak właśnie tak wyszło?
+portale branżowe, ale też i ogólne coraz szerzej mówiły o faktycznej konkurencji dla polskiej kolei. Rozpisywały się o
+nowej epoce podróżowania pociągiem, o nowej jakości, o magicznym wolnym rynku. Z pompatycznych zapowiedzi, powtarzanych
+na setkach grup internetowych, z wielkiego zachwytu i wręcz rozpalonej ojkofobii, można było odnieść wrażenie, że
+RegioJet to będzie coś na miarę pierwszej w Polsce restauracji McDonald's. Może faktycznie właśnie tak wyszło?
 
 ### Skromne dobrego początki
 
