@@ -1,0 +1,327 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Meta from "../../components/shared/Meta.astro";
+import PhotoSwipeInit from "../../components/shared/PhotoSwipeInit";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { getImage } from "astro:assets";
+import { marked } from "marked";
+
+interface Props {
+  entry: CollectionEntry<"trips">;
+}
+
+export async function getStaticPaths() {
+  const entries = await getCollection("trips");
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as Props;
+
+// Smart Polish date range:
+//  - same day → "15 kwietnia 2026"
+//  - same month/year → "15 – 17 kwietnia 2026"
+//  - same year → "30 kwietnia – 2 maja 2026"
+//  - different years → "30 grudnia 2025 – 2 stycznia 2026"
+function formatDateRange(start: Date, end?: Date): string {
+  const full: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const startFull = start.toLocaleDateString("pl-PL", full);
+  if (!end || start.toDateString() === end.toDateString()) return startFull;
+  const endFull = end.toLocaleDateString("pl-PL", full);
+  const sameYear = start.getFullYear() === end.getFullYear();
+  const sameMonth = sameYear && start.getMonth() === end.getMonth();
+  if (sameMonth) {
+    return `${start.toLocaleDateString("pl-PL", { day: "numeric" })} – ${endFull}`;
+  }
+  if (sameYear) {
+    return `${start.toLocaleDateString("pl-PL", { day: "numeric", month: "long" })} – ${endFull}`;
+  }
+  return `${startFull} – ${endFull}`;
+}
+
+// Pre-resolve every section's images into compact webp thumbnails (~500px),
+// keeping the original `src` so the lightbox loads full resolution on demand.
+const sections = await Promise.all(
+  entry.data.sections.map(async (section) => {
+    const images = await Promise.all(
+      section.images.map(async (img) => {
+        const thumb = await getImage({
+          src: img,
+          width: 500,
+          format: "webp",
+          quality: 72,
+        });
+        return {
+          thumbSrc: thumb.src,
+          fullSrc: img.src,
+          width: img.width,
+          height: img.height,
+        };
+      }),
+    );
+    return {
+      location: section.location,
+      dateRange: formatDateRange(section.startDate, section.endDate),
+      startDateIso: section.startDate.toISOString(),
+      contentHtml: marked.parse(section.content) as string,
+      images,
+    };
+  }),
+);
+
+// Restrained cover for the page header.
+const heroCover = await getImage({
+  src: entry.data.coverImage,
+  width: 1600,
+  format: "webp",
+  quality: 78,
+});
+
+const dateRange = formatDateRange(entry.data.startDate, entry.data.endDate);
+const totalPhotos = sections.reduce((n, s) => n + s.images.length, 0);
+const ogImage = `/trips/${entry.id}/thumbnail.png`;
+
+// Polish plural: 1 / 2-4 / 5+ (with the 12-14 exception). Used for "miejsce/a"
+// and "zdjęcie/a/" — copy reads correctly across counts.
+function pl(n: number, one: string, few: string, many: string): string {
+  if (n === 1) return one;
+  const lastTwo = n % 100;
+  const last = n % 10;
+  if (lastTwo >= 12 && lastTwo <= 14) return many;
+  if (last >= 2 && last <= 4) return few;
+  return many;
+}
+const placesLabel = pl(sections.length, "miejsce", "miejsca", "miejsc");
+const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
+---
+
+<Layout>
+  <Fragment slot="title">{entry.data.title}</Fragment>
+  <Meta
+    slot="head"
+    title={entry.data.title}
+    description={entry.data.excerpt}
+    type="article"
+    publishedTime={entry.data.startDate.toISOString()}
+    image={ogImage}
+    keywords={entry.data.keywords}
+  />
+
+  {/* Breadcrumbs — semantic <ol>, last item is the current page */}
+  <nav
+    aria-label="Ścieżka nawigacji"
+    class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8"
+  >
+    <ol
+      class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500 dark:text-gray-500"
+    >
+      <li>
+        <a
+          href="/"
+          aria-label="Strona główna"
+          title="Strona główna"
+          class="hover:text-brand-600 dark:hover:text-brand-400 inline-flex items-center transition-colors"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-4 w-4"
+            aria-hidden="true"
+          >
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </a>
+      </li>
+      <li aria-hidden="true" class="text-brand-500/40">/</li>
+      <li>
+        <a
+          href="/trips"
+          class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors"
+        >
+          Podróże
+        </a>
+      </li>
+      <li aria-hidden="true" class="text-brand-500/40">/</li>
+      <li
+        aria-current="page"
+        class="font-medium text-gray-700 dark:text-gray-300"
+      >
+        {entry.data.title}
+      </li>
+    </ol>
+  </nav>
+
+  {/* Cover — letterbox banner, generous gap from breadcrumbs */}
+  <div class="mx-auto mt-8 w-full max-w-5xl px-4 sm:mt-10 sm:px-6 lg:px-8">
+    <figure
+      class="relative aspect-[3/1] w-full overflow-hidden rounded-xl shadow-md ring-1 ring-black/5 sm:rounded-2xl dark:ring-white/10"
+    >
+      <img
+        src={heroCover.src}
+        alt={entry.data.title}
+        class="h-full w-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+      <div
+        class="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent"
+      >
+      </div>
+    </figure>
+  </div>
+
+  {/* Editorial header */}
+  <header
+    class="mx-auto max-w-2xl px-4 pt-8 pb-8 text-center sm:px-6 sm:pt-10 sm:pb-10"
+  >
+    <p
+      class="text-brand-600 dark:text-brand-400 mb-3 flex items-center justify-center gap-3 text-[10px] font-bold tracking-[0.4em] uppercase"
+    >
+      <span class="bg-brand-600/40 dark:bg-brand-400/40 h-px w-8"></span>
+      Podróż
+      <span class="bg-brand-600/40 dark:bg-brand-400/40 h-px w-8"></span>
+    </p>
+    <h1
+      class="font-family-slab text-2xl leading-[1.15] font-bold tracking-tight text-balance text-gray-900 sm:text-3xl lg:text-4xl dark:text-white"
+    >
+      {entry.data.title}
+    </h1>
+    <p
+      class="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-pretty text-gray-600 italic sm:text-base dark:text-gray-400"
+    >
+      {entry.data.excerpt}
+    </p>
+    <div
+      class="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-medium text-gray-500 dark:text-gray-500"
+    >
+      <time datetime={entry.data.startDate.toISOString()}>{dateRange}</time>
+      <span class="text-brand-500/40" aria-hidden="true">·</span>
+      <span>{sections.length} {placesLabel}</span>
+      <span class="text-brand-500/40" aria-hidden="true">·</span>
+      <span>{totalPhotos} {photosLabel}</span>
+    </div>
+  </header>
+
+  <PhotoSwipeInit client:load />
+
+  {/* Sections — narrower than the cover, magazine-inset feel */}
+  <main class="mx-auto max-w-3xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-20">
+    {
+      sections.map((section, idx) => {
+        const num = String(idx + 1).padStart(2, "0");
+        const total = String(sections.length).padStart(2, "0");
+        return (
+          <section class="mb-12 last:mb-0 sm:mb-16">
+            {/* Chapter eyebrow */}
+            <div class="mb-3 flex items-center gap-3">
+              <span class="bg-brand-500 dark:bg-brand-400 h-px w-10" />
+              <span class="text-brand-600 dark:text-brand-400 font-family-slab text-[10px] font-bold tracking-[0.4em] uppercase">
+                {num} <span class="text-brand-500/40">/</span> {total}
+              </span>
+            </div>
+
+            {/* Section title — restrained city + italic country */}
+            <div class="mb-1 flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+              <h2 class="font-family-slab text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
+                {section.location.city}
+              </h2>
+              <p class="text-base font-light text-gray-500 italic sm:text-lg dark:text-gray-500">
+                {section.location.country}
+              </p>
+            </div>
+
+            {/* Section dateline */}
+            <time
+              datetime={section.startDateIso}
+              class="mb-5 block text-xs text-gray-500 italic dark:text-gray-500"
+            >
+              {section.dateRange}
+            </time>
+
+            {/* Body — justified, hyphenated for clean rags */}
+            {section.contentHtml && (
+              <div
+                class="trip-prose mb-5 text-justify text-sm leading-[1.7] hyphens-auto text-gray-700 sm:text-base dark:text-gray-300"
+                set:html={section.contentHtml}
+              />
+            )}
+
+            {/* Compact uniform gallery — click any tile to enlarge */}
+            <div class="pswp-gallery grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3">
+              {section.images.map((img) => (
+                <a
+                  href={img.fullSrc}
+                  data-pswp-src={img.fullSrc}
+                  data-pswp-width={img.width}
+                  data-pswp-height={img.height}
+                  class="group relative block overflow-hidden rounded-lg ring-1 ring-black/5 dark:ring-white/10"
+                >
+                  <img
+                    src={img.thumbSrc}
+                    alt={`${section.location.city}, ${section.location.country}`}
+                    loading="lazy"
+                    decoding="async"
+                    class="block aspect-[4/3] w-full cursor-zoom-in object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                  />
+                </a>
+              ))}
+            </div>
+          </section>
+        );
+      })
+    }
+  </main>
+</Layout>
+
+{
+  /* Body styling for the markdown rendered via set:html. Scoped by the
+    `.trip-prose` class which is unique to this page, so is:global is safe. */
+}
+<style is:global>
+  .trip-prose :where(p) {
+    margin-block: 1.1em;
+  }
+  .trip-prose :where(p):first-child {
+    margin-top: 0;
+  }
+  .trip-prose :where(p):last-child {
+    margin-bottom: 0;
+  }
+  .trip-prose :where(strong) {
+    font-weight: 700;
+    color: rgb(17 24 39);
+  }
+  html.dark .trip-prose :where(strong) {
+    color: white;
+  }
+  .trip-prose :where(em) {
+    font-style: italic;
+  }
+  .trip-prose :where(a) {
+    color: var(--color-brand-700);
+    border-bottom: 1px solid var(--color-brand-300);
+    text-decoration: none;
+    transition: border-color 200ms;
+  }
+  .trip-prose :where(a:hover) {
+    border-bottom-color: var(--color-brand-600);
+  }
+  html.dark .trip-prose :where(a) {
+    color: var(--color-brand-400);
+    border-bottom-color: var(--color-brand-700);
+  }
+  html.dark .trip-prose :where(a:hover) {
+    border-bottom-color: var(--color-brand-400);
+  }
+</style>

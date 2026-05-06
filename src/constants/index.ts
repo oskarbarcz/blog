@@ -14,6 +14,9 @@ export const ARTICLES_PAGE_DESCRIPTION =
 export const EVENTS_PAGE_DESCRIPTION =
   "Wystąpienia, panele i spotkania — oś czasu wydarzeń, w których brałem udział.";
 
+export const TRIPS_PAGE_DESCRIPTION =
+  "Podróże i wyprawy — fotorelacje z miejsc, które odwiedziłem.";
+
 export const HOMEPAGE_LATEST_COUNT = 3;
 
 export const ARTICLES_PER_PAGE = 6;

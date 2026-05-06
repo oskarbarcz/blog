@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+import TripsList from "../components/trips/TripsList.tsx";
+import Meta from "../components/shared/Meta.astro";
+import Layout from "../layouts/Layout.astro";
+import { TRIPS_PAGE_DESCRIPTION } from "../constants";
+
+const allTrips = await getCollection("trips");
+
+// Sort by start date (newest first), then resolve cover thumbs through the
+// Astro image pipeline so the listing only loads small webp variants.
+const trips = await Promise.all(
+  allTrips
+    .sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime())
+    .map(async (trip) => {
+      const cover = await getImage({
+        src: trip.data.coverImage,
+        width: 800,
+        format: "webp",
+        quality: 70,
+      });
+      return {
+        slug: trip.id,
+        title: trip.data.title,
+        excerpt: trip.data.excerpt,
+        startDate: trip.data.startDate.toISOString(),
+        endDate: trip.data.endDate?.toISOString(),
+        coverThumb: cover.src,
+        sectionCount: trip.data.sections.length,
+        photoCount: trip.data.sections.reduce((n, s) => n + s.images.length, 0),
+      };
+    }),
+);
+---
+
+<Layout>
+  <Fragment slot="title">Podróże</Fragment>
+  <Meta
+    slot="head"
+    title="Podróże"
+    description={TRIPS_PAGE_DESCRIPTION}
+    keywords={["podróże", "fotorelacje", "wyprawy", "blog podróżniczy"]}
+  />
+  <TripsList trips={trips} client:load />
+</Layout>
