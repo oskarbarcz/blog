@@ -51,4 +51,34 @@ const events = defineCollection({
   }),
 });
 
-export const collections = { articles, events };
+const trips = defineCollection({
+  // Single-segment glob so colocated asset folders (e.g. images alongside the
+  // .md) are not picked up as collection entries.
+  loader: glob({ pattern: "*.md", base: "./src/content/trips" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      excerpt: z.string(),
+      startDate: z.date(),
+      endDate: z.date().optional(),
+      coverImage: image(),
+      keywords: z.array(z.string()).optional(),
+      sections: z
+        .array(
+          z.object({
+            location: z.object({
+              city: z.string(),
+              country: z.string(),
+            }),
+            startDate: z.date(),
+            endDate: z.date().optional(),
+            // Markdown — parsed with `marked` at render time
+            content: z.string(),
+            images: z.array(image()).min(1),
+          }),
+        )
+        .min(1),
+    }),
+});
+
+export const collections = { articles, events, trips };

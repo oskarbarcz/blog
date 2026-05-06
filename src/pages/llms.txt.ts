@@ -6,15 +6,21 @@ import {
   HOMEPAGE_DESCRIPTION,
   ARTICLES_PAGE_DESCRIPTION,
   EVENTS_PAGE_DESCRIPTION,
+  TRIPS_PAGE_DESCRIPTION,
   SOCIAL_LINKS,
   AUTHOR_BIO,
 } from "../constants";
 
 export async function GET() {
   const articles = await getCollection("articles");
+  const trips = await getCollection("trips");
 
   const sortedArticles = articles.sort(
     (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+  );
+
+  const sortedTrips = trips.sort(
+    (a, b) => b.data.startDate.getTime() - a.data.startDate.getTime(),
   );
 
   let content = `# ${SITE_NAME}\n\n`;
@@ -23,6 +29,7 @@ export async function GET() {
   content += `## Main Pages\n\n`;
   content += `- [Home](${SITE_ORIGIN}): ${HOMEPAGE_DESCRIPTION}\n`;
   content += `- [Articles](${SITE_ORIGIN}/articles): ${ARTICLES_PAGE_DESCRIPTION}\n`;
+  content += `- [Trips](${SITE_ORIGIN}/trips): ${TRIPS_PAGE_DESCRIPTION}\n`;
   content += `- [Events](${SITE_ORIGIN}/events): ${EVENTS_PAGE_DESCRIPTION}\n\n`;
 
   content += `## Articles\n\n`;
@@ -31,6 +38,14 @@ export async function GET() {
     const excerpt = article.data.excerpt.replace(/\s+/g, " ").trim();
     content += `- [${article.data.title}](${SITE_ORIGIN}/articles/${article.id}): ${excerpt}\n`;
   });
+
+  if (sortedTrips.length > 0) {
+    content += `\n## Trips\n\n`;
+    sortedTrips.forEach((trip) => {
+      const excerpt = trip.data.excerpt.replace(/\s+/g, " ").trim();
+      content += `- [${trip.data.title}](${SITE_ORIGIN}/trips/${trip.id}): ${excerpt}\n`;
+    });
+  }
 
   content += `\n## Social Links\n\n`;
   content += `- [LinkedIn](${SOCIAL_LINKS.linkedin})\n`;

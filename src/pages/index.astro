@@ -2,9 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import Meta from "../components/shared/Meta.astro";
 import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
 import HomeHero from "../components/home/HomeHero";
 import HomeLatestArticles from "../components/home/HomeLatestArticles";
 import HomeLatestEvents from "../components/home/HomeLatestEvents";
+import HomeLatestTrips from "../components/home/HomeLatestTrips";
 import {
   HOMEPAGE_LATEST_COUNT,
   HOMEPAGE_DESCRIPTION,
@@ -35,6 +37,31 @@ const latestEvents = allEvents
     date: e.data.date.toISOString(),
     city: e.data.city,
   }));
+
+const allTrips = await getCollection("trips");
+const latestTrips = await Promise.all(
+  allTrips
+    .sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime())
+    .slice(0, HOMEPAGE_LATEST_COUNT)
+    .map(async (trip) => {
+      const cover = await getImage({
+        src: trip.data.coverImage,
+        width: 800,
+        format: "webp",
+        quality: 70,
+      });
+      return {
+        slug: trip.id,
+        title: trip.data.title,
+        excerpt: trip.data.excerpt,
+        startDate: trip.data.startDate.toISOString(),
+        endDate: trip.data.endDate?.toISOString(),
+        coverThumb: cover.src,
+        sectionCount: trip.data.sections.length,
+        photoCount: trip.data.sections.reduce((n, s) => n + s.images.length, 0),
+      };
+    }),
+);
 ---
 
 <Layout>
@@ -55,6 +82,7 @@ const latestEvents = allEvents
   <main>
     <HomeHero />
     <HomeLatestArticles articles={latestArticles} />
+    <HomeLatestTrips trips={latestTrips} />
     <HomeLatestEvents events={latestEvents} />
   </main>
 </Layout>
