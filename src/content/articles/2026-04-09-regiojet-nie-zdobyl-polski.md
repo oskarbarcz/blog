@@ -47,6 +47,7 @@ wizerunek profesjonalnego przewoźnika, utrudniał odkrycie przez grupy takie ja
 duży procent pasażerów komunikacji zbiorowej.
 
 ### Brak sensownej reklamy
+
 Nie był to jednak moim zdaniem żaden wyrok: RegioJet mógłby nadrobić sprawnym, agresywnym marketingiem digitalowym, w
 przestrzeni internetowej, na nośnikach fizycznych poza dworcami: nie zrobił tego. **Wchodząc na rynek jako marka
 zupełnie nieznajoma dla polskiego pasażera, przewoźnik powinien zbudować kampanię dającą rozpoznawalność: nie na dworcu,

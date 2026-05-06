@@ -40,9 +40,7 @@ const events = defineCollection({
     links: z
       .object({
         // Allow internal article links (e.g., /articles/my-post) or full URLs
-        article: z
-          .union([z.url(), z.string().regex(/^\//)])
-          .optional(),
+        article: z.union([z.url(), z.string().regex(/^\//)]).optional(),
         youtube: z.url().optional(),
         linkedin: z.url().optional(),
         facebook: z.url().optional(),
