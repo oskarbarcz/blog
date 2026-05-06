@@ -12,7 +12,7 @@ const allArticles = await getCollection("articles");
 const articles = allArticles
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .map((article) => ({
-    slug: article.slug,
+    slug: article.id,
     title: article.data.title,
     excerpt: article.data.excerpt,
     date: article.data.date.toISOString(),

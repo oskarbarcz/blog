@@ -1,7 +1,9 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import z from "zod";
 
 const articles = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/articles" }),
   schema: z.object({
     title: z.string(),
     excerpt: z.string(),
@@ -9,14 +11,13 @@ const articles = defineCollection({
     readTime: z.string(),
     tags: z.array(z.string()).default([]),
     keywords: z.array(z.string()).optional(),
-    coverUrl: z.string().url().optional(),
+    coverUrl: z.url().optional(),
     reactionaryContext: z.string().optional(),
   }),
 });
 
-// Events collection
 const events = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "**/*.md", base: "./src/content/events" }),
   schema: z.object({
     title: z.string(), // event name
     role: z.enum(["guest", "speaker", "panelist", "participant", "organizer"]),
@@ -25,12 +26,12 @@ const events = defineCollection({
     description: z.string(),
     organizer: z.object({
       name: z.string(),
-      logo: z.string().url().nullable().optional(),
+      logo: z.url().nullable().optional(),
     }),
     photos: z
       .array(
         z.union([
-          z.string().url(),
+          z.url(),
           z.string().regex(/^(?:\/|\.\/|\.\.\/|[A-Za-z0-9_\-./]+)$/),
         ]),
       )
@@ -40,12 +41,12 @@ const events = defineCollection({
       .object({
         // Allow internal article links (e.g., /articles/my-post) or full URLs
         article: z
-          .union([z.string().url(), z.string().regex(/^\//)])
+          .union([z.url(), z.string().regex(/^\//)])
           .optional(),
-        youtube: z.string().url().optional(),
-        linkedin: z.string().url().optional(),
-        facebook: z.string().url().optional(),
-        other: z.string().url().optional(),
+        youtube: z.url().optional(),
+        linkedin: z.url().optional(),
+        facebook: z.url().optional(),
+        other: z.url().optional(),
       })
       .partial()
       .optional(),

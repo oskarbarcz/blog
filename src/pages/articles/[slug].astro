@@ -6,7 +6,7 @@ import AuthorSection from "../../components/articles/AuthorSection.tsx";
 import ReactionaryContext from "../../components/articles/ReactionaryContext.tsx";
 import ArchiveContext from "../../components/articles/ArchiveContext.tsx";
 import PhotoSwipeInit from "../../components/shared/PhotoSwipeInit";
-import type { CollectionEntry } from "astro:content";
+import { render, type CollectionEntry } from "astro:content";
 
 interface Props {
   entry: CollectionEntry<"articles">;
@@ -17,13 +17,13 @@ export async function getStaticPaths() {
   const entries = await getCollection("articles");
 
   return entries.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props as Props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <Layout>
@@ -34,7 +34,7 @@ const { Content } = await entry.render();
     description={entry.data.excerpt}
     type="article"
     publishedTime={entry.data.date.toISOString()}
-    image={`/articles/${entry.slug}/thumbnail.png`}
+    image={`/articles/${entry.id}/thumbnail.png`}
     keywords={entry.data.keywords ?? entry.data.tags}
   />
   <main

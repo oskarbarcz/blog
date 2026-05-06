@@ -14,7 +14,7 @@ const satori = satoriLib as unknown as (
 export async function getStaticPaths() {
   const articles = await getCollection("articles");
   return articles.map((article) => ({
-    params: { slug: article.slug },
+    params: { slug: article.id },
     props: { article },
   }));
 }

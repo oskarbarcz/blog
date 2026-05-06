@@ -16,7 +16,7 @@ const latestArticles = allArticles
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, HOMEPAGE_LATEST_COUNT)
   .map((article) => ({
-    slug: article.slug,
+    slug: article.id,
     title: article.data.title,
     excerpt: article.data.excerpt,
     date: article.data.date.toISOString(),

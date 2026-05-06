@@ -29,7 +29,7 @@ export async function GET() {
   sortedArticles.forEach((article) => {
     // Sanitize excerpt: remove newlines and extra spaces
     const excerpt = article.data.excerpt.replace(/\s+/g, " ").trim();
-    content += `- [${article.data.title}](${SITE_ORIGIN}/articles/${article.slug}): ${excerpt}\n`;
+    content += `- [${article.data.title}](${SITE_ORIGIN}/articles/${article.id}): ${excerpt}\n`;
   });
 
   content += `\n## Social Links\n\n`;
