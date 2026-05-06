@@ -14,8 +14,8 @@ export default function TripsList({ trips }: TripsListProps) {
             Podróże
           </h1>
           <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-            Fotorelacje z wypraw — miejsca, które warto zobaczyć i klimaty,
-            które warto zapamiętać.
+            Podróże krótkie i dalekie, w formie fotorelacji i komentarza z
+            miejsc, które odwiedziłem.
           </p>
         </div>
 
