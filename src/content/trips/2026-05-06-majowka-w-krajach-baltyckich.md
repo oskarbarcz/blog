@@ -54,4 +54,63 @@ sections:
       - ./2026-05-06-majowka-w-krajach-baltyckich/panevezys/2.jpeg
       - ./2026-05-06-majowka-w-krajach-baltyckich/panevezys/3.jpeg
       - ./2026-05-06-majowka-w-krajach-baltyckich/panevezys/4.jpeg
+  - location:
+      city: "Ryga"
+      country: "Łotwa"
+    startDate: 2026-05-01
+    endDate: 2026-05-02
+    content: |
+      Wyjeżdżając z Poniewieża na północ trasą A10 nie mijamy już żadnych większych miejscowości. Krajobraz nie zmienia
+      się znacznie, dominują nas połacie lasów, pól i nieużytków. Całkiem z zaskoczenia bierze nas obecność granicy
+      litewsko-łotewskiej. Panuje na niej cisza, spokój. Dwa małe parkingi, kilka flag obu krajów  i wiadomość od
+      operatora mówiąca "Witamy na Łotwie". Kolejne kilometry również mijają nam całkiem spokojnie. Łotewskie drogi
+      usiane są fotoradarami, a kierowcy trzymają się wyznaczonych limitów.
+
+      Ryga wita nas remontem drogi wjazdowej oraz całymi szeregami szarych, smutnych dość bloków. Bliżej centrum
+      wjeżdżamy na szeroką, wielopasmową arterię. Jej rozmach robi wrażenie - jadąc wysokim mostem nad rzeką Dźwiną,
+      od razu mamy wrażenie, że jesteśmy w dużym, europejskim mieście. Niestety, im bliżej centrum, tym bardziej widać
+      jego zaniedbanie - **nie tylko szare bloki, ale też brudne chodniki, zniszczone elewacje i ogólny bałagan**. Na
+      szczęście, w okolicy rynku starego miasta jest już znacznie lepiej - mijamy zadbane, wyremontowane kamienice,
+      eleganckie lokale i ogrom turystów. Ryga to pierwsza stolica na naszej trasie - monumentalizm kamienic, deptaki i
+      wąskie uliczki w centrum są bardzo dużym kontrastem, zarówno do przedmieść, jak i całego kraju. Tętni tu życie,
+      jest pełno młodych ludzi i turystów.
+
+      Wieczór można spędzić w wielu bardzo atrakcyjnych lokalach, jak przystało na środek Europy. Klimat miejsc i lokali
+      przypomina mi Kraków - nie wiem jednak czy chodzi o te wąskie uliczki, czy znaczą obecność brytyjskich turystów.
+      Stare Miasto otoczone jest szerokimi plantami, ze sztucznym kanałem dającym nieco ochłody w dość gorący, majowy
+      dzień.
+    images:
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/0.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/1.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/2.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/3.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/4.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/5.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/6.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/7.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/8.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/9.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/10.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/11.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/12.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/riga/13.jpeg
+  - location:
+      city: "Vitrupe"
+      country: "Łotwa"
+    startDate: 2026-05-02
+    content: |
+      Wyjeżdżamy z Rygi na północ, znowu przedzierając się przez ryskie przedmieścia. Jest to obraz bardzo dużego
+      kontrastu poziomów życia. Mijamy zaniedbane regiony przemysłowe, mijamy osiedla domów jednorodzinnych. Kończy się
+      szeroka arteria, zaczyna standardowa "droga krajowa". Jest sobota, piękna pogoda, ruch na drodze nad morze jest
+      więc naturalnie bardzo duży, lecz całkiem płynny. Docieramy do ostatniego punktu na Łotwie w tym momencie - plaży
+      i parkingu w Vitrupe.
+
+      Plaża jest ładna, szeroka, piaszczysta. Nie jest to jednak miejsce dość popularne, więc poza kilkoma
+      przejeżdżającymi samochodami raczej nikt tu nie zjeżdża. Spacerujemy w pięknej pogodzie po plaży nad Zatoką Ryską,
+      w zasadzie nie do odróżnienia klimatem od "naszego" Bałtyku.
+    images:
+      - ./2026-05-06-majowka-w-krajach-baltyckich/vitrupe/0.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/vitrupe/1.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/vitrupe/2.jpeg
+      - ./2026-05-06-majowka-w-krajach-baltyckich/vitrupe/3.jpeg
 ---
