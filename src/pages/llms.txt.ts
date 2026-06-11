@@ -33,7 +33,7 @@ export async function GET() {
   content += `- [Events](${SITE_ORIGIN}/events): ${EVENTS_PAGE_DESCRIPTION}\n\n`;
 
   content += `## API\n\n`;
-  content += `- [Events JSON](${SITE_ORIGIN}/api/events): Machine-readable JSON feed of all events.\n\n`;
+  content += `- [Events JSON](${SITE_ORIGIN}/api/events.json): Machine-readable JSON feed of all events.\n\n`;
 
   content += `## Articles\n\n`;
   sortedArticles.forEach((article) => {
