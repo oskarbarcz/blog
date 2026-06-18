@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const COPY_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>`;
+const CLIP_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>`;
 const CHECK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
 
 export default function HeadingAnchors() {
@@ -23,7 +23,7 @@ export default function HeadingAnchors() {
       button.className = "heading-anchor";
       button.setAttribute("aria-label", "Kopiuj odnośnik do tej sekcji");
       button.title = "Kopiuj odnośnik do tej sekcji";
-      button.innerHTML = COPY_SVG;
+      button.innerHTML = CLIP_SVG;
 
       let resetTimer: ReturnType<typeof setTimeout> | undefined;
       const onClick = async () => {
@@ -40,13 +40,13 @@ export default function HeadingAnchors() {
         button.classList.add("copied");
         if (resetTimer) clearTimeout(resetTimer);
         resetTimer = setTimeout(() => {
-          button.innerHTML = COPY_SVG;
+          button.innerHTML = CLIP_SVG;
           button.classList.remove("copied");
         }, 1500);
       };
 
       button.addEventListener("click", onClick);
-      heading.insertBefore(button, heading.firstChild);
+      heading.appendChild(button);
 
       cleanups.push(() => {
         if (resetTimer) clearTimeout(resetTimer);

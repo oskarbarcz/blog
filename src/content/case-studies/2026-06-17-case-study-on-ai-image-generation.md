@@ -1,10 +1,9 @@
 ---
-title: "Case study: rendering aircraft silhouettes"
-excerpt: "I needed 96 consistent aircraft silhouettes for my flight tracker app, and manual production would have been far too slow and expensive. By combining AI image generation with deterministic post-processing, I built a workflow that is fast, scalable, and cheap enough for real product use.
-
-"
+title: "Batch-rendering aircraft silhouettes"
+excerpt: "I needed 96 consistent aircraft silhouettes for my flight tracker app, and manual production would have been far too slow and expensive. By combining AI image generation with deterministic post-processing, I built a workflow that is fast, scalable, and cheap enough for real product use."
 date: 2026-06-17
 readTime: "12 min"
+language: en
 tags:
   - case study
   - ai
