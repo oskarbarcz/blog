@@ -43,6 +43,30 @@ html.dark body {
   color: rgb(243 244 246); /* gray-100 */
 }
 
+/* Article reading-progress bar (sits just below the sticky navigation) */
+.reading-progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 40;
+  pointer-events: none;
+  background: transparent;
+}
+
+.reading-progress__bar {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(
+    to right,
+    var(--color-brand-500),
+    var(--color-brand-700)
+  );
+  will-change: transform;
+}
+
 /* Keyframes for hero blob morphing (used via Tailwind animate-[...]) */
 @keyframes blobMorph {
   0% {

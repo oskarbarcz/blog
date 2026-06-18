@@ -48,7 +48,10 @@ export default function Navigation() {
   }, [open]);
 
   return (
-    <div className="sticky top-0 z-50 border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <div
+      id="site-navigation"
+      className="sticky top-0 z-50 border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900"
+    >
       <Navbar
         fluid
         className="mx-auto max-w-7xl bg-transparent px-4 sm:px-6 lg:px-8 dark:bg-gray-900"

@@ -37,6 +37,7 @@ fast, scalable, and cheap enough for real product use.
 **The problem**
 
 Business requirements were clear:
+
 - uniform scale across all aircraft
 - professional, catalog-like quality
 - consistent lighting, shadows, glare, colors, and reflections
@@ -105,11 +106,11 @@ core part of VATSIM Radar app. If you take a look, you may find that hundreds of
 this solution.
 
 However, one challenge I faced is the presentation of the data in my app: how to represent each aircraft type in a way
-that is **clean**, **consistent* and **visually appealing** across the entire interface? As graphic eye candy, I
+that is **clean**, **consistent\* and **visually appealing** across the entire interface? As graphic eye candy, I
 thought I may use aircraft silhouettes. A silhouette is a **simplified**, **clean representation** of an aircraft that
 captures its essential shape **without unnecessary detail**. Having a single, generic silhouette for each aircraft type
 is already useful. For example, showing "this is an Airbus A320" when tracking a flight would make the user experience
-**more personalized**, **more connected**, more **visually appealing**.
+**more personalized**, **more connected**, more **visually appealing\*\*.
 
 But if we can adjust the silhouette to match the specific plane someone is flying (e.g., with the correct livery,
 specific variant, or unique features), it would be even more impactful. This personalization adds a layer of authenticity
@@ -245,13 +246,13 @@ details.
 In a table below, examples of the `low` quality **Airbus A380-800** generated at different resolutions are compared:
 
 | resolution: `std (1536x1024px)`                                                                                            | resolution: `2K (2560x1440px)`                                                                                              |
-|----------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | ![A380 low quality, low resolution](/photos/article/2026-06-17-case-study-on-ai-image-generation/gpt-2-low/a388-lores.png) | ![A380 low quality, high resolution](/photos/article/2026-06-17-case-study-on-ai-image-generation/gpt-2-low/a388-hires.png) |
 
 In a table below, examples of the `low` quality **Airbus A380-800** generated at different resolutions are compared:
 
 | resolution: `std (1536x1024px)`                                                                                              | resolution: `2K (2560x1440px)`                                                                                                |
-|------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | ![A380 high quality, low resolution](/photos/article/2026-06-17-case-study-on-ai-image-generation/gpt-2-high/a388-lores.png) | ![A380 high quality, high resolution](/photos/article/2026-06-17-case-study-on-ai-image-generation/gpt-2-high/a388-hires.png) |
 
 ### Nondeterminism is evident
@@ -329,7 +330,7 @@ When I looked in detail on every image, they were consistent and free of major g
 issues with certain airframes.
 
 | Airbus A300-F                                                                                    | Airbus A310                                                                                    | Boeing 737-500                                                                                    |
-|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | ![Airbus A300-F](/photos/article/2026-06-17-case-study-on-ai-image-generation/rejected/a30f.png) | ![Airbus A310](/photos/article/2026-06-17-case-study-on-ai-image-generation/rejected/a310.png) | ![Boeing 737-500](/photos/article/2026-06-17-case-study-on-ai-image-generation/rejected/b735.png) |
 
 **It is hard to describe these issues in human language: the problem is that they just look outstanding in a negative
@@ -375,7 +376,7 @@ worked well for roughly 70% of the aircraft. For the remaining 30%, however, the
 and see the details):
 
 | ATR 72                                                                                                   | Boeing 787-10 Dreamliner                                                                                                  | Boeing 737-800                                                                                                  |
-|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | ![ATR 72 ](/photos/article/2026-06-17-case-study-on-ai-image-generation/transparency_artifacts/at73.png) | ![Boeing 787-10 Dreamliner](/photos/article/2026-06-17-case-study-on-ai-image-generation/transparency_artifacts/b78x.png) | ![Boeing 737-800](/photos/article/2026-06-17-case-study-on-ai-image-generation/transparency_artifacts/b738.png) |
 
 > The full script can be found [on my GitHub repository](https://github.com/oskarbarcz/flight-tracker-etl-tools/blob/main/aircraft-illustration-generator/src/remove-background.js).
@@ -390,7 +391,7 @@ tolerance for semi-transparent pixels—I reran the background removal. The seco
 across all 96 aircraft, like on the corrected examples below:
 
 | ATR 72                                                                                                   | Boeing 787-10 Dreamliner                                                                                                  | Boeing 737-800                                                                                                  |
-|----------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | ![ATR 72 ](/photos/article/2026-06-17-case-study-on-ai-image-generation/transparency_corrected/at73.png) | ![Boeing 787-10 Dreamliner](/photos/article/2026-06-17-case-study-on-ai-image-generation/transparency_corrected/b78x.png) | ![Boeing 737-800](/photos/article/2026-06-17-case-study-on-ai-image-generation/transparency_corrected/b738.png) |
 
 This experience makes a clear point: **AI models are not effective at deterministic tasks like background removal.**
@@ -417,7 +418,7 @@ maintains the same visual style, lighting, and quality, but with the correct air
 the examples below:
 
 | Airbus A320-200 in Lufthansa livery                                                                                          | Airbus A320neo in Air Canada default livery                                                                                          | Airbus A350-900 in Finnair unique _Marimekko Kivet_ livery                                                                                           |
-|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![Airbus A320-200 in Lufthansa livery](/photos/article/2026-06-17-case-study-on-ai-image-generation/liveries_poc/a20nlh.png) | ![Airbus A320neo in Air Canada default livery](/photos/article/2026-06-17-case-study-on-ai-image-generation/liveries_poc/a20nac.png) | ![Airbus A350-900 in Finnair unique _Marimekko Kivet_ livery](/photos/article/2026-06-17-case-study-on-ai-image-generation/liveries_poc/a350fin.png) |
 
 This is a next step in product customization that I did not plan for before. With old-school tools and manual
