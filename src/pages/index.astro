@@ -6,7 +6,7 @@ import { getImage } from "astro:assets";
 import HomeHero from "../components/home/HomeHero";
 import HomeLatestArticles from "../components/home/HomeLatestArticles";
 import HomeLatestEvents from "../components/home/HomeLatestEvents";
-import HomeLatestTrips from "../components/home/HomeLatestTrips";
+import HomeCaseStudiesAndTrips from "../components/home/HomeCaseStudiesAndTrips";
 import {
   HOMEPAGE_LATEST_COUNT,
   HOMEPAGE_DESCRIPTION,
@@ -15,6 +15,21 @@ import {
 
 const allArticles = await getCollection("articles");
 const latestArticles = allArticles
+  .filter((article) => !article.data.tags.includes("case study"))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, HOMEPAGE_LATEST_COUNT)
+  .map((article) => ({
+    slug: article.id,
+    title: article.data.title,
+    excerpt: article.data.excerpt,
+    date: article.data.date.toISOString(),
+    readTime: article.data.readTime,
+    tags: article.data.tags,
+    coverUrl: article.data.coverUrl,
+  }));
+
+const latestCaseStudies = allArticles
+  .filter((article) => article.data.tags.includes("case study"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, HOMEPAGE_LATEST_COUNT)
   .map((article) => ({
@@ -82,7 +97,10 @@ const latestTrips = await Promise.all(
   <main>
     <HomeHero />
     <HomeLatestArticles articles={latestArticles} />
-    <HomeLatestTrips trips={latestTrips} />
+    <HomeCaseStudiesAndTrips
+      caseStudies={latestCaseStudies}
+      trips={latestTrips}
+    />
     <HomeLatestEvents events={latestEvents} />
   </main>
 </Layout>

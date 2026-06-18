@@ -11,6 +11,9 @@ export const HOMEPAGE_DESCRIPTION =
 export const ARTICLES_PAGE_DESCRIPTION =
   "Lista artykułów, które koncentrują się na praktycznych aspektach budowy skalowalnych aplikacji, dobrej architekturze i jakości kodu, bazując na realnych projektach autora.";
 
+export const CASE_STUDIES_PAGE_DESCRIPTION =
+  "Studia przypadków — realne problemy z moich projektów wraz z opisem zastosowanych rozwiązań i wyciągniętych wniosków.";
+
 export const EVENTS_PAGE_DESCRIPTION =
   "Wystąpienia, panele i spotkania — oś czasu wydarzeń, w których brałem udział.";
 

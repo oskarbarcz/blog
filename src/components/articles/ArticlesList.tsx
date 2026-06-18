@@ -8,9 +8,15 @@ import type { Article } from "./types.ts";
 
 interface ArticlesListProps {
   articles: Article[];
+  title?: string;
+  subtitle?: string;
 }
 
-export default function ArticlesList({ articles }: ArticlesListProps) {
+export default function ArticlesList({
+  articles,
+  title,
+  subtitle,
+}: ArticlesListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = ARTICLES_PER_PAGE;
 
@@ -27,7 +33,7 @@ export default function ArticlesList({ articles }: ArticlesListProps) {
   return (
     <main className="relative bg-linear-to-br from-gray-50 via-white to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
       <div className="relative mx-auto max-w-7xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24 lg:pb-12">
-        <ArticlesHeader />
+        <ArticlesHeader title={title} subtitle={subtitle} />
         <ArticlesGrid>
           {currentArticles.map((article) => (
             <ArticleCard key={article.slug} article={article} />

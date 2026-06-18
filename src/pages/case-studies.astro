@@ -3,14 +3,13 @@ import { getCollection } from "astro:content";
 import ArticlesList from "../components/articles/ArticlesList.tsx";
 import Meta from "../components/shared/Meta.astro";
 import Layout from "../layouts/Layout.astro";
-import { ARTICLES_PAGE_DESCRIPTION } from "../constants";
+import { CASE_STUDIES_PAGE_DESCRIPTION } from "../constants";
 
-// Fetch all articles from the content collection
+// Case studies are articles tagged "case study"
 const allArticles = await getCollection("articles");
 
-// Sort articles by date (newest first) and transform data
-const articles = allArticles
-  .filter((article) => !article.data.tags.includes("case study"))
+const caseStudies = allArticles
+  .filter((article) => article.data.tags.includes("case study"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .map((article) => ({
     slug: article.id,
@@ -24,17 +23,22 @@ const articles = allArticles
 ---
 
 <Layout>
-  <Fragment slot="title">Wszystkie publikacje</Fragment>
+  <Fragment slot="title">Case studies</Fragment>
   <Meta
     slot="head"
-    title="Wszystkie publikacje"
-    description={ARTICLES_PAGE_DESCRIPTION}
+    title="Case studies"
+    description={CASE_STUDIES_PAGE_DESCRIPTION}
     keywords={[
-      "blog",
-      "artykuły IT",
+      "case study",
+      "studium przypadku",
       "architektura oprogramowania",
       "programowanie",
     ]}
   />
-  <ArticlesList articles={articles} client:load />
+  <ArticlesList
+    articles={caseStudies}
+    title="Case studies"
+    subtitle={CASE_STUDIES_PAGE_DESCRIPTION}
+    client:load
+  />
 </Layout>
