@@ -10,6 +10,7 @@ const allArticles = await getCollection("articles");
 
 // Sort articles by date (newest first) and transform data
 const articles = allArticles
+  .filter((article) => !article.data.tags.includes("case study"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .map((article) => ({
     slug: article.id,

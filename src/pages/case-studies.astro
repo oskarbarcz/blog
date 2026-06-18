@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import ArticlesList from "../components/articles/ArticlesList.tsx";
+import Meta from "../components/shared/Meta.astro";
+import Layout from "../layouts/Layout.astro";
+import { CASE_STUDIES_PAGE_DESCRIPTION } from "../constants";
+
+// Case studies are articles tagged "case study"
+const allArticles = await getCollection("articles");
+
+const caseStudies = allArticles
+  .filter((article) => article.data.tags.includes("case study"))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .map((article) => ({
+    slug: article.id,
+    title: article.data.title,
+    excerpt: article.data.excerpt,
+    date: article.data.date.toISOString(),
+    readTime: article.data.readTime,
+    tags: article.data.tags,
+    coverUrl: article.data.coverUrl,
+  }));
+---
+
+<Layout>
+  <Fragment slot="title">Case studies</Fragment>
+  <Meta
+    slot="head"
+    title="Case studies"
+    description={CASE_STUDIES_PAGE_DESCRIPTION}
+    keywords={[
+      "case study",
+      "studium przypadku",
+      "architektura oprogramowania",
+      "programowanie",
+    ]}
+  />
+  <ArticlesList
+    articles={caseStudies}
+    title="Case studies"
+    subtitle={CASE_STUDIES_PAGE_DESCRIPTION}
+    client:load
+  />
+</Layout>

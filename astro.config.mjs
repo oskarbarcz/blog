@@ -4,9 +4,13 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import flowbiteReact from "flowbite-react/plugin/astro";
+import rehypeSlug from "rehype-slug";
 
 export default defineConfig({
   site: "https://blog.barcz.me",
+  markdown: {
+    rehypePlugins: [rehypeSlug],
+  },
   prefetch: {
     prefetchAll: true,
     defaultStrategy: "hover",

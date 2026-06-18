@@ -13,6 +13,7 @@ import {
   FaNewspaper,
   FaCalendarDays,
   FaMapLocationDot,
+  FaFlask,
 } from "react-icons/fa6";
 import { SITE_NAME } from "../../constants";
 
@@ -47,7 +48,10 @@ export default function Navigation() {
   }, [open]);
 
   return (
-    <div className="sticky top-0 z-50 border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
+    <div
+      id="site-navigation"
+      className="sticky top-0 z-50 border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900"
+    >
       <Navbar
         fluid
         className="mx-auto max-w-7xl bg-transparent px-4 sm:px-6 lg:px-8 dark:bg-gray-900"
@@ -74,6 +78,12 @@ export default function Navigation() {
             href="/articles"
           >
             Publikacje
+          </NavbarLink>
+          <NavbarLink
+            className="hover:text-brand-500! duration-100"
+            href="/case-studies"
+          >
+            Case studies
           </NavbarLink>
           <NavbarLink
             className="hover:text-brand-500! duration-100"
@@ -118,6 +128,16 @@ export default function Navigation() {
               >
                 <FaNewspaper className="text-brand-600 dark:text-brand-400 h-5 w-5" />
                 Publikacje
+              </a>
+            </li>
+            <li>
+              <a
+                href="/case-studies"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-3 rounded-lg px-4 py-4 text-lg font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
+              >
+                <FaFlask className="text-brand-600 dark:text-brand-400 h-5 w-5" />
+                Case studies
               </a>
             </li>
             <li>
