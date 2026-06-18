@@ -6,6 +6,7 @@ import AuthorSection from "../../components/articles/AuthorSection.tsx";
 import ReactionaryContext from "../../components/articles/ReactionaryContext.tsx";
 import ArchiveContext from "../../components/articles/ArchiveContext.tsx";
 import PhotoSwipeInit from "../../components/shared/PhotoSwipeInit";
+import HeadingAnchors from "../../components/articles/HeadingAnchors";
 import { render, type CollectionEntry } from "astro:content";
 
 interface Props {
@@ -106,6 +107,7 @@ const { Content } = await render(entry);
     }
 
     <PhotoSwipeInit client:load />
+    <HeadingAnchors client:load />
 
     <article class="article-content pswp-gallery overflow-auto wrap-break-word">
       <Content />
