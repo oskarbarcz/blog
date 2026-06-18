@@ -6,4 +6,5 @@ export interface Article {
   readTime: string;
   tags: string[];
   coverUrl?: string;
+  language?: "pl" | "en";
 }

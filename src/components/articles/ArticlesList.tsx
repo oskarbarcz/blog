@@ -10,12 +10,15 @@ interface ArticlesListProps {
   articles: Article[];
   title?: string;
   subtitle?: string;
+  /** URL prefix for card links, e.g. "/articles" or "/case-studies". */
+  basePath?: string;
 }
 
 export default function ArticlesList({
   articles,
   title,
   subtitle,
+  basePath,
 }: ArticlesListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = ARTICLES_PER_PAGE;
@@ -36,7 +39,11 @@ export default function ArticlesList({
         <ArticlesHeader title={title} subtitle={subtitle} />
         <ArticlesGrid>
           {currentArticles.map((article) => (
-            <ArticleCard key={article.slug} article={article} />
+            <ArticleCard
+              key={article.slug}
+              article={article}
+              basePath={basePath}
+            />
           ))}
         </ArticlesGrid>
 

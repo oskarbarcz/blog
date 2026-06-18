@@ -2,18 +2,28 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import z from "zod";
 
+// Shared by `articles` and `caseStudies` — they have identical frontmatter,
+// they just live in separate collections so they get separate URLs.
+const articleSchema = z.object({
+  title: z.string(),
+  excerpt: z.string(),
+  date: z.date(),
+  readTime: z.string(),
+  tags: z.array(z.string()).default([]),
+  keywords: z.array(z.string()).optional(),
+  coverUrl: z.url().optional(),
+  reactionaryContext: z.string().optional(),
+  language: z.enum(["pl", "en"]).default("pl"),
+});
+
 const articles = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/articles" }),
-  schema: z.object({
-    title: z.string(),
-    excerpt: z.string(),
-    date: z.date(),
-    readTime: z.string(),
-    tags: z.array(z.string()).default([]),
-    keywords: z.array(z.string()).optional(),
-    coverUrl: z.url().optional(),
-    reactionaryContext: z.string().optional(),
-  }),
+  schema: articleSchema,
+});
+
+const caseStudies = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/case-studies" }),
+  schema: articleSchema,
 });
 
 const events = defineCollection({
@@ -81,4 +91,4 @@ const trips = defineCollection({
     }),
 });
 
-export const collections = { articles, events, trips };
+export const collections = { articles, caseStudies, events, trips };

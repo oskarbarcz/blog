@@ -15,7 +15,6 @@ import {
 
 const allArticles = await getCollection("articles");
 const latestArticles = allArticles
-  .filter((article) => !article.data.tags.includes("case study"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, HOMEPAGE_LATEST_COUNT)
   .map((article) => ({
@@ -26,10 +25,11 @@ const latestArticles = allArticles
     readTime: article.data.readTime,
     tags: article.data.tags,
     coverUrl: article.data.coverUrl,
+    language: article.data.language,
   }));
 
-const latestCaseStudies = allArticles
-  .filter((article) => article.data.tags.includes("case study"))
+const allCaseStudies = await getCollection("caseStudies");
+const latestCaseStudies = allCaseStudies
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, HOMEPAGE_LATEST_COUNT)
   .map((article) => ({
@@ -40,6 +40,7 @@ const latestCaseStudies = allArticles
     readTime: article.data.readTime,
     tags: article.data.tags,
     coverUrl: article.data.coverUrl,
+    language: article.data.language,
   }));
 
 const allEvents = await getCollection("events");

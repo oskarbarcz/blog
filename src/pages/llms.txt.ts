@@ -5,6 +5,7 @@ import {
   DEFAULT_SITE_DESCRIPTION,
   HOMEPAGE_DESCRIPTION,
   ARTICLES_PAGE_DESCRIPTION,
+  CASE_STUDIES_PAGE_DESCRIPTION,
   EVENTS_PAGE_DESCRIPTION,
   TRIPS_PAGE_DESCRIPTION,
   SOCIAL_LINKS,
@@ -13,9 +14,14 @@ import {
 
 export async function GET() {
   const articles = await getCollection("articles");
+  const caseStudies = await getCollection("caseStudies");
   const trips = await getCollection("trips");
 
   const sortedArticles = articles.sort(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+  );
+
+  const sortedCaseStudies = caseStudies.sort(
     (a, b) => b.data.date.getTime() - a.data.date.getTime(),
   );
 
@@ -29,6 +35,7 @@ export async function GET() {
   content += `## Main Pages\n\n`;
   content += `- [Home](${SITE_ORIGIN}): ${HOMEPAGE_DESCRIPTION}\n`;
   content += `- [Articles](${SITE_ORIGIN}/articles): ${ARTICLES_PAGE_DESCRIPTION}\n`;
+  content += `- [Case Studies](${SITE_ORIGIN}/case-studies): ${CASE_STUDIES_PAGE_DESCRIPTION}\n`;
   content += `- [Trips](${SITE_ORIGIN}/trips): ${TRIPS_PAGE_DESCRIPTION}\n`;
   content += `- [Events](${SITE_ORIGIN}/events): ${EVENTS_PAGE_DESCRIPTION}\n\n`;
 
@@ -41,6 +48,14 @@ export async function GET() {
     const excerpt = article.data.excerpt.replace(/\s+/g, " ").trim();
     content += `- [${article.data.title}](${SITE_ORIGIN}/articles/${article.id}): ${excerpt}\n`;
   });
+
+  if (sortedCaseStudies.length > 0) {
+    content += `\n## Case Studies\n\n`;
+    sortedCaseStudies.forEach((caseStudy) => {
+      const excerpt = caseStudy.data.excerpt.replace(/\s+/g, " ").trim();
+      content += `- [${caseStudy.data.title}](${SITE_ORIGIN}/case-studies/${caseStudy.id}): ${excerpt}\n`;
+    });
+  }
 
   if (sortedTrips.length > 0) {
     content += `\n## Trips\n\n`;

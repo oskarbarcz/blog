@@ -6,7 +6,6 @@
   margin-inline: auto;
   font-size: 1.0625rem; /* ~17px */
   line-height: 1.8;
-  padding-left: 1.75rem;
 }
 
 /* Headings */
@@ -35,19 +34,18 @@
   font-size: 1.25rem;
 }
 
-.article-content .heading-anchor-wrapper {
-  position: relative;
-}
-
+/* The copy-anchor flows inline right after the heading text, sized in `em`
+   so it scales with the heading and stays vertically centered on the text. */
 .article-content .heading-anchor {
-  position: absolute;
-  left: -1.75rem;
-  top: 0;
-  height: 1.25em;
-  width: 1.4rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  vertical-align: baseline;
+  margin-left: 0.4em;
+  width: 0.9em;
+  height: 0.9em;
+  /* nudge the icon down so its centre lines up with the cap-height of the text */
+  transform: translateY(0.08em);
   padding: 0;
   border: 0;
   background: transparent;
@@ -58,8 +56,8 @@
 }
 
 .article-content .heading-anchor svg {
-  width: 1.05rem;
-  height: 1.05rem;
+  width: 100%;
+  height: 100%;
 }
 
 .article-content .heading-anchor-wrapper:hover .heading-anchor,

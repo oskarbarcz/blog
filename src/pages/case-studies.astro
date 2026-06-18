@@ -5,11 +5,9 @@ import Meta from "../components/shared/Meta.astro";
 import Layout from "../layouts/Layout.astro";
 import { CASE_STUDIES_PAGE_DESCRIPTION } from "../constants";
 
-// Case studies are articles tagged "case study"
-const allArticles = await getCollection("articles");
+const allCaseStudies = await getCollection("caseStudies");
 
-const caseStudies = allArticles
-  .filter((article) => article.data.tags.includes("case study"))
+const caseStudies = allCaseStudies
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .map((article) => ({
     slug: article.id,
@@ -19,6 +17,7 @@ const caseStudies = allArticles
     readTime: article.data.readTime,
     tags: article.data.tags,
     coverUrl: article.data.coverUrl,
+    language: article.data.language,
   }));
 ---
 
@@ -39,6 +38,7 @@ const caseStudies = allArticles
     articles={caseStudies}
     title="Case studies"
     subtitle={CASE_STUDIES_PAGE_DESCRIPTION}
+    basePath="/case-studies"
     client:load
   />
 </Layout>

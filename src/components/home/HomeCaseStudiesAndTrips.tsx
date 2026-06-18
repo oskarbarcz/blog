@@ -45,7 +45,11 @@ export default function HomeCaseStudiesAndTrips({
               <ColumnHeader title="Case studies" href="/case-studies" />
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 {caseStudies.map((a) => (
-                  <ArticleCard key={a.slug} article={a} />
+                  <ArticleCard
+                    key={a.slug}
+                    article={a}
+                    basePath="/case-studies"
+                  />
                 ))}
               </div>
             </div>
