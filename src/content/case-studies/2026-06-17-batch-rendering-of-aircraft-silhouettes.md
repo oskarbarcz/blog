@@ -472,9 +472,9 @@ accurate to the real aircraft, with precision measured in micrometers.
 ### Costs of this case study
 
 I used Perplexity to prompt engineering and script generation. I got a free PRO version license through a deal
-with PayPal, where all PayPal users could grab it. For OpenAI, I uploaded $15 to the account. I used **$4** just to
+with PayPal, where all PayPal users could grab it. For OpenAI, I uploaded **$15** to the account. I used **$4** just to
 explore, experiment, and generate examples while testing different prompts and settings. I spent another **$4.80** for
-the final production image generation (96 aircraft in total + 6 regenerations).
+the final production image generation _(96 aircraft in total + 6 regenerations)_.
 
 In comparison to any other tools, subscription services like **ChatGPT Pro**, **Artlist**, stock image libraries, or
 manual design work via web chat interfaces, this is dramatically low. A single professional aircraft illustration from a

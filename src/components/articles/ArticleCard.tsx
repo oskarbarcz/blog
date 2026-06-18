@@ -111,7 +111,7 @@ export default function ArticleCard({
 
           <Button size="xs" color="gray" pill as="a" href={href}>
             <span className="flex items-center gap-1.5 text-xs">
-              {isEnglish ? "Przeczytaj w jęz. angielskim" : "Przeczytaj"}
+              Przeczytaj
               <FaArrowRight className="h-2.5 w-2.5" />
             </span>
           </Button>
