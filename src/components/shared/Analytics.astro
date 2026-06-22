@@ -1,0 +1,14 @@
+---
+const CF_BEACON_TOKEN = "9eb99cc4bbc4445fb866a3573e5f4e04";
+---
+
+{
+  import.meta.env.PROD && (
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={`{"token": "${CF_BEACON_TOKEN}"}`}
+    />
+  )
+}

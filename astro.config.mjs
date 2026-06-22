@@ -4,6 +4,7 @@ import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
 import flowbiteReact from "flowbite-react/plugin/astro";
 import rehypeSlug from "rehype-slug";
 
@@ -15,7 +16,7 @@ export default defineConfig({
   site: "https://blog.barcz.me",
   redirects,
   markdown: {
-    rehypePlugins: [rehypeSlug],
+    processor: unified({ rehypePlugins: [rehypeSlug] }),
   },
   prefetch: {
     prefetchAll: true,

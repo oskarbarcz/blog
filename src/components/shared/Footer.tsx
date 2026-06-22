@@ -1,21 +1,26 @@
-import { Footer as FlowbiteFooter, FooterCopyright } from "flowbite-react";
+import { Footer as FlowbiteFooter } from "flowbite-react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa6";
-import { SOCIAL_LINKS, PUBLISHER_NAME } from "../../constants";
+import {
+  SOCIAL_LINKS,
+  PUBLISHER_NAME,
+  FOOTER_PRIVACY_NOTICE,
+} from "../../constants";
 
 export default function Footer() {
   return (
     <FlowbiteFooter
       container
-      className="rounded-none border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900"
+      className="rounded-none border-t border-gray-200 bg-white py-4 dark:border-gray-800 dark:bg-gray-900"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex w-full flex-col items-center justify-between gap-3 py-4 md:flex-row">
           <div className="text-sm text-gray-600 dark:text-gray-400">
-            <FooterCopyright
-              href="/"
-              by={PUBLISHER_NAME}
-              year={new Date().getFullYear()}
-            />
+            <span>
+              © 1999–{new Date().getFullYear()}{" "}
+              <a href="/" className="hover:underline">
+                {PUBLISHER_NAME}
+              </a>
+            </span>
           </div>
 
           <div className="flex items-center gap-3">
@@ -57,6 +62,10 @@ export default function Footer() {
             </a>
           </div>
         </div>
+
+        <p className="border-t border-gray-100 py-4 text-center text-xs text-gray-500 dark:border-gray-800 dark:text-gray-500">
+          {FOOTER_PRIVACY_NOTICE}
+        </p>
       </div>
     </FlowbiteFooter>
   );

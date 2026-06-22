@@ -6,6 +6,7 @@ import { ThemeModeScript } from "flowbite-react";
 import { ThemeInit } from "../../.flowbite-react/init";
 import Navigation from "../components/shared/Navigation.tsx";
 import Footer from "../components/shared/Footer.tsx";
+import Analytics from "../components/shared/Analytics.astro";
 import { DEFAULT_SITE_TITLE, SITE_TITLE_SUFFIX } from "../constants";
 ---
 
@@ -39,6 +40,7 @@ import { DEFAULT_SITE_TITLE, SITE_TITLE_SUFFIX } from "../constants";
       rel="stylesheet"
     />
     <ThemeModeScript client:load />
+    <Analytics />
     <ClientRouter />
   </head>
   <body class="flex min-h-dvh flex-col">
