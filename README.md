@@ -53,7 +53,7 @@ Feel free to check [our documentation](https://docs.astro.build) or jump into ou
 
 This project is configured to deploy to GitHub Pages via GitHub Actions.
 
-Repository: `oskarbarcz/yet-another-blog-attempt`
+Repository: `oskarbarcz/blog`
 
 ### What’s included
 

@@ -102,7 +102,7 @@ statyczny. Jako hosting wykorzystuję **GitHub Pages**, tutaj priorytet to po pr
 subskrypcyjnych.
 
 Ten blog jest prosty, ale w pełni mój — i o to właśnie chodziło. Jego kod jest publicznie dostępny na GitHub, i możecie
-go zobaczyć [**o tutaj**](https://github.com/oskarbarcz/yet-another-blog-attempt). Jeżeli macie jakieś sugestie - w kilku miejscach na tej stronie znajdziecie sposób jak
+go zobaczyć [**o tutaj**](https://github.com/oskarbarcz/blog). Jeżeli macie jakieś sugestie - w kilku miejscach na tej stronie znajdziecie sposób jak
 się ze mną skontaktować.
 
 **Dzięki, że tu zajrzałeś/aś.** Jeśli coś z tego, co napisałem, zostanie z Tobą, choć na chwilę — to już wystarczający
