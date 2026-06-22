@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <FlowbiteFooter
       container
-      className="py-4 rounded-none border-t border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900"
+      className="rounded-none border-t border-gray-200 bg-white py-4 dark:border-gray-800 dark:bg-gray-900"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex w-full flex-col items-center justify-between gap-3 py-4 md:flex-row">

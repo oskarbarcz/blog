@@ -83,7 +83,7 @@ When you’re ready to use `blog.barcz.me`:
 
 Notes:
 
-- Until the custom domain is active, GitHub Pages will preview under `https://oskarbarcz.github.io/yet-another-blog-attempt/`.
+- Until the custom domain is active, GitHub Pages will preview under `https://oskarbarcz.github.io/blog/`.
 - Because `astro.config.mjs` uses `site = https://blog.barcz.me`, canonical URLs will already point to your future domain; this is fine during transition.
 
 ### Local development
