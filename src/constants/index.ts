@@ -35,6 +35,8 @@ export const AUTHOR_BIO =
   "Lider zespołów w obszarze IT i architekt oprogramowania, który z pasją łączy świat komercyjnych innowacji z technologią w służbie społeczeństwu. Buduję mosty między światem technologii a inicjatywami społecznymi. Dzielę się wiedzą i doświadczeniem zarówno na scenie jak i na tym blogu.";
 export const AUTHOR_PHOTO = "https://github.com/oskarbarcz.png"; // Use GitHub profile photo as a reliable source
 export const BRAND_COLOR = "#40bf7e";
+export const FOOTER_PRIVACY_NOTICE =
+  "Strona używa Cloudflare Web Analytics - nie używa plików cookie i nie śledzi użytkowników.";
 
 export const SOCIAL_LINKS = {
   facebook: "https://facebook.com/oskarbarcz",
