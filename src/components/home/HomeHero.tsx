@@ -4,13 +4,14 @@ import HeroBlob from "./HeroBlob";
 export default function HomeHero() {
   return (
     <section className="relative">
+      {/* Grainy haze, masked to fade out from the top-right */}
+      <div aria-hidden="true" className="hero-haze absolute inset-0 z-0" />
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
         {/* Blob anchored to the right within the full hero container */}
         <HeroBlob />
         <div className="relative z-10 max-w-3xl">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl dark:text-white">
-            Witaj na moim blogu, <br />
-            moim cyfrowym ogrodzie
+            Witaj na moim blogu, <br />w moim cyfrowym ogrodzie
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-gray-600 dark:text-gray-400">
             Zawodowo jestem liderem zespołów w obszarze IT i architektem

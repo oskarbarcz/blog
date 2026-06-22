@@ -35,7 +35,7 @@ export default function RoleBadge({ role }: RoleBadgeProps) {
   const cfg = map[role];
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${cfg.classes}`}
+      className={`font-family-mono inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${cfg.classes}`}
     >
       {cfg.label}
     </span>

@@ -17,8 +17,29 @@ import {
 } from "react-icons/fa6";
 import { SITE_NAME } from "../../constants";
 
-export default function Navigation() {
+const NAV_ITEMS = [
+  { href: "/", label: "Strona główna", Icon: FaHouse },
+  { href: "/articles", label: "Publikacje", Icon: FaNewspaper },
+  { href: "/case-studies", label: "Case studies", Icon: FaFlask },
+  { href: "/trips", label: "Podróże", Icon: FaMapLocationDot },
+  { href: "/events", label: "Wydarzenia", Icon: FaCalendarDays },
+];
+
+interface NavigationProps {
+  /** Current page path, passed from the Astro layout so the active link is
+      correct on first paint (no hydration flash). */
+  pathname?: string;
+}
+
+export default function Navigation({ pathname = "/" }: NavigationProps) {
   const [open, setOpen] = useState(false);
+
+  // Normalize away any trailing slash for matching.
+  const current = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
+  const isActive = (href: string) =>
+    href === "/"
+      ? current === "/"
+      : current === href || current.startsWith(`${href}/`);
 
   // Lock body scroll when mobile drawer is open
   useEffect(() => {
@@ -50,11 +71,11 @@ export default function Navigation() {
   return (
     <div
       id="site-navigation"
-      className="sticky top-0 z-50 border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900"
+      className="sticky top-0 z-50 border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950"
     >
       <Navbar
         fluid
-        className="mx-auto max-w-7xl bg-transparent px-4 sm:px-6 lg:px-8 dark:bg-gray-900"
+        className="mx-auto max-w-7xl bg-transparent px-4 sm:px-6 lg:px-8 dark:bg-gray-950"
       >
         <NavbarBrand
           className="font-family-mono text-brand-600 dark:text-brand-400 text-lg font-bold"
@@ -70,36 +91,19 @@ export default function Navigation() {
 
         {/* Desktop nav */}
         <NavbarCollapse className="hidden md:order-2 md:ml-auto md:flex md:items-center md:gap-6">
-          <NavbarLink
-            className="font-family-mono hover:text-brand-500! text-sm duration-100"
-            href="/"
-          >
-            Strona główna
-          </NavbarLink>
-          <NavbarLink
-            className="font-family-mono hover:text-brand-500! text-sm duration-100"
-            href="/articles"
-          >
-            Publikacje
-          </NavbarLink>
-          <NavbarLink
-            className="font-family-mono hover:text-brand-500! text-sm duration-100"
-            href="/case-studies"
-          >
-            Case studies
-          </NavbarLink>
-          <NavbarLink
-            className="font-family-mono hover:text-brand-500! text-sm duration-100"
-            href="/trips"
-          >
-            Podróże
-          </NavbarLink>
-          <NavbarLink
-            className="font-family-mono hover:text-brand-500! text-sm duration-100"
-            href="/events"
-          >
-            Wydarzenia
-          </NavbarLink>
+          {NAV_ITEMS.map(({ href, label }) => (
+            <NavbarLink
+              key={href}
+              href={href}
+              className={
+                isActive(href)
+                  ? "font-family-mono text-brand-600! dark:text-brand-400! text-sm font-bold duration-100"
+                  : "font-family-mono hover:text-brand-500! text-sm duration-100"
+              }
+            >
+              {label}
+            </NavbarLink>
+          ))}
         </NavbarCollapse>
       </Navbar>
 
@@ -109,60 +113,27 @@ export default function Navigation() {
         onClose={() => setOpen(false)}
         position="right"
         backdrop
-        className="w-[80vw] max-w-xs bg-white p-0 dark:bg-gray-900"
+        className="w-[80vw] max-w-xs bg-white p-0 dark:bg-gray-950"
       >
         <nav className="px-2 py-2">
           <ul className="divide-y divide-gray-200 dark:divide-gray-800">
-            <li>
-              <a
-                href="/"
-                onClick={() => setOpen(false)}
-                className="font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
-              >
-                <FaHouse className="text-brand-600 dark:text-brand-400 h-5 w-5" />
-                Strona główna
-              </a>
-            </li>
-            <li>
-              <a
-                href="/articles"
-                onClick={() => setOpen(false)}
-                className="font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
-              >
-                <FaNewspaper className="text-brand-600 dark:text-brand-400 h-5 w-5" />
-                Publikacje
-              </a>
-            </li>
-            <li>
-              <a
-                href="/case-studies"
-                onClick={() => setOpen(false)}
-                className="font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
-              >
-                <FaFlask className="text-brand-600 dark:text-brand-400 h-5 w-5" />
-                Case studies
-              </a>
-            </li>
-            <li>
-              <a
-                href="/trips"
-                onClick={() => setOpen(false)}
-                className="font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
-              >
-                <FaMapLocationDot className="text-brand-600 dark:text-brand-400 h-5 w-5" />
-                Podróże
-              </a>
-            </li>
-            <li>
-              <a
-                href="/events"
-                onClick={() => setOpen(false)}
-                className="font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
-              >
-                <FaCalendarDays className="text-brand-600 dark:text-brand-400 h-5 w-5" />
-                Wydarzenia
-              </a>
-            </li>
+            {NAV_ITEMS.map(({ href, label, Icon }) => (
+              <li key={href}>
+                <a
+                  href={href}
+                  onClick={() => setOpen(false)}
+                  aria-current={isActive(href) ? "page" : undefined}
+                  className={
+                    isActive(href)
+                      ? "bg-brand-50 text-brand-600 dark:bg-brand-400/10 dark:text-brand-400 font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-bold"
+                      : "font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
+                  }
+                >
+                  <Icon className="text-brand-600 dark:text-brand-400 h-5 w-5" />
+                  {label}
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
       </Drawer>

@@ -22,10 +22,12 @@ export default function HomeLatestArticles({
           </h2>
           <a
             href="/articles"
-            className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex shrink-0 items-center gap-1 text-sm font-medium whitespace-nowrap"
+            className="group/all font-family-mono text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 inline-flex shrink-0 items-center gap-1 text-xs whitespace-nowrap transition-colors"
           >
+            <span className="text-gray-400 dark:text-gray-500">[</span>
             Zobacz wszystkie
-            <FaArrowRight className="h-3.5 w-3.5" />
+            <FaArrowRight className="h-2.5 w-2.5 transition-transform duration-150 group-hover/all:translate-x-0.5" />
+            <span className="text-gray-400 dark:text-gray-500">]</span>
           </a>
         </div>
 

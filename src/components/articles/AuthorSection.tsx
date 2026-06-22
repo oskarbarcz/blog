@@ -35,7 +35,7 @@ export default function AuthorSection() {
           <div className="mt-4 flex justify-center sm:justify-start">
             <a
               href={SOCIAL_LINKS.linkedin}
-              className="bg-brand-50 text-brand-600 hover:bg-brand-100 focus:ring-brand-500 dark:bg-brand-400/10 dark:text-brand-400 dark:hover:bg-brand-400/20 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors focus:ring-2 focus:outline-none"
+              className="bg-brand-50 text-brand-600 hover:bg-brand-100 focus:ring-brand-500 dark:bg-brand-400/10 dark:text-brand-400 dark:hover:bg-brand-400/20 font-family-mono inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:ring-2 focus:outline-none"
               target="_blank"
               rel="noopener noreferrer"
             >

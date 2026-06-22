@@ -1,16 +1,22 @@
 import { Footer as FlowbiteFooter } from "flowbite-react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa6";
 import {
   SOCIAL_LINKS,
   PUBLISHER_NAME,
   FOOTER_PRIVACY_NOTICE,
 } from "../../constants";
 
+const SOCIALS = [
+  { href: SOCIAL_LINKS.facebook, label: "facebook" },
+  { href: SOCIAL_LINKS.instagram, label: "instagram" },
+  { href: SOCIAL_LINKS.linkedin, label: "linkedin" },
+  { href: SOCIAL_LINKS.github, label: "github" },
+];
+
 export default function Footer() {
   return (
     <FlowbiteFooter
       container
-      className="rounded-none border-t border-gray-200 bg-white py-4 dark:border-gray-800 dark:bg-gray-900"
+      className="rounded-none border-t border-gray-200 bg-white py-4 dark:border-gray-800 dark:bg-gray-950"
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex w-full flex-col items-center justify-between gap-3 py-4 md:flex-row">
@@ -23,43 +29,20 @@ export default function Footer() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3">
-            <a
-              href={SOCIAL_LINKS.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-brand-600 dark:hover:text-brand-400 text-gray-500 transition-colors dark:text-gray-400"
-              aria-label="Facebook"
-            >
-              <FaFacebook className="h-5 w-5" />
-            </a>
-            <a
-              href={SOCIAL_LINKS.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-brand-600 dark:hover:text-brand-400 text-gray-500 transition-colors dark:text-gray-400"
-              aria-label="Instagram"
-            >
-              <FaInstagram className="h-5 w-5" />
-            </a>
-            <a
-              href={SOCIAL_LINKS.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-brand-600 dark:hover:text-brand-400 text-gray-500 transition-colors dark:text-gray-400"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin className="h-5 w-5" />
-            </a>
-            <a
-              href={SOCIAL_LINKS.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-brand-600 dark:hover:text-brand-400 text-gray-500 transition-colors dark:text-gray-400"
-              aria-label="GitHub"
-            >
-              <FaGithub className="h-5 w-5" />
-            </a>
+          <div className="font-family-mono flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
+            {SOCIALS.map(({ href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-600 dark:hover:text-brand-400 inline-flex items-center gap-1 text-gray-500 transition-colors dark:text-gray-400"
+              >
+                <span className="text-gray-400 dark:text-gray-600">[</span>
+                {label}
+                <span className="text-gray-400 dark:text-gray-600">]</span>
+              </a>
+            ))}
           </div>
         </div>
 

@@ -45,7 +45,7 @@ const { Content } = await render(entry);
     <header class="mb-10">
       {
         entry.data.coverUrl && (
-          <div class="mb-6 overflow-hidden rounded-xl bg-gray-100 dark:bg-gray-800">
+          <div class="mb-6 overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800">
             <img
               src={entry.data.coverUrl}
               alt={entry.data.title}
@@ -59,19 +59,22 @@ const { Content } = await render(entry);
       <nav class="mb-6">
         <a
           href="/articles"
-          class="hover:text-brand-600 dark:hover:text-brand-400 inline-flex items-center gap-2 text-sm font-medium text-gray-600 dark:text-gray-400"
+          class="group/back hover:text-brand-600 dark:hover:text-brand-400 font-family-mono inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
         >
-          <span aria-hidden="true">←</span>
+          <span
+            class="transition-transform duration-150 group-hover/back:-translate-x-0.5"
+            aria-hidden="true">←</span
+          >
           Powrót do listy publikacji
         </a>
       </nav>
       <h1
-        class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white"
+        class="font-family-slab text-3xl font-bold tracking-tight text-gray-900 dark:text-white"
       >
         {entry.data.title}
       </h1>
       <div
-        class="mt-3 flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400"
+        class="font-family-mono mt-3 flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400"
       >
         <time datetime={entry.data.date.toISOString()}>
           {
