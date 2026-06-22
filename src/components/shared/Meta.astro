@@ -9,6 +9,7 @@ import {
   PUBLISHER_NAME,
   AUTHOR_NAME,
   TWITTER_HANDLE,
+  DEFAULT_OG_IMAGE,
 } from "../../constants";
 
 interface Props {
@@ -46,7 +47,7 @@ const resolveImage = (img?: string) => {
   return `${SITE_ORIGIN}${img.startsWith("/") ? "" : "/"}${img}`;
 };
 
-const effectiveImage = resolveImage(image);
+const effectiveImage = resolveImage(image ?? DEFAULT_OG_IMAGE);
 const effectiveImageAlt = imageAlt ?? title ?? DEFAULT_SITE_TITLE;
 const twitterCard = effectiveImage ? "summary_large_image" : "summary";
 const canonical =
@@ -73,6 +74,7 @@ const resolvedAuthor = authorName ?? AUTHOR_NAME;
   effectiveImage && (
     <>
       <meta property="og:image" content={effectiveImage} />
+      <meta property="og:image:type" content="image/png" />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       {effectiveImageAlt && (
