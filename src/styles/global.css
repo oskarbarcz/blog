@@ -15,7 +15,7 @@
   --color-brand-900: #064e3b;
   --color-brand-950: #022c22;
 
-  --font-family-mono: "Roboto Mono", ui-monospace, monospace;
+  --font-family-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --font-family-slab: "Roboto Slab", ui-serif, serif;
   --font-family-sans:
     ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
@@ -65,6 +65,13 @@ html.dark body {
     var(--color-brand-700)
   );
   will-change: transform;
+}
+
+/* Respect users who prefer reduced motion: stop the ambient hero blob. */
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-[blobMorph"] {
+    animation: none !important;
+  }
 }
 
 /* Keyframes for hero blob morphing (used via Tailwind animate-[...]) */

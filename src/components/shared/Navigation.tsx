@@ -57,7 +57,7 @@ export default function Navigation() {
         className="mx-auto max-w-7xl bg-transparent px-4 sm:px-6 lg:px-8 dark:bg-gray-900"
       >
         <NavbarBrand
-          className="font-family-slab text-brand-600 dark:text-brand-400 text-xl font-bold"
+          className="font-family-mono text-brand-600 dark:text-brand-400 text-lg font-bold"
           href="/"
         >
           {SITE_NAME}
@@ -70,29 +70,32 @@ export default function Navigation() {
 
         {/* Desktop nav */}
         <NavbarCollapse className="hidden md:order-2 md:ml-auto md:flex md:items-center md:gap-6">
-          <NavbarLink className="hover:text-brand-500! duration-100" href="/">
+          <NavbarLink
+            className="font-family-mono hover:text-brand-500! text-sm duration-100"
+            href="/"
+          >
             Strona główna
           </NavbarLink>
           <NavbarLink
-            className="hover:text-brand-500! duration-100"
+            className="font-family-mono hover:text-brand-500! text-sm duration-100"
             href="/articles"
           >
             Publikacje
           </NavbarLink>
           <NavbarLink
-            className="hover:text-brand-500! duration-100"
+            className="font-family-mono hover:text-brand-500! text-sm duration-100"
             href="/case-studies"
           >
             Case studies
           </NavbarLink>
           <NavbarLink
-            className="hover:text-brand-500! duration-100"
+            className="font-family-mono hover:text-brand-500! text-sm duration-100"
             href="/trips"
           >
             Podróże
           </NavbarLink>
           <NavbarLink
-            className="hover:text-brand-500! duration-100"
+            className="font-family-mono hover:text-brand-500! text-sm duration-100"
             href="/events"
           >
             Wydarzenia
@@ -114,7 +117,7 @@ export default function Navigation() {
               <a
                 href="/"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 rounded-lg px-4 py-4 text-lg font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
+                className="font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
               >
                 <FaHouse className="text-brand-600 dark:text-brand-400 h-5 w-5" />
                 Strona główna
@@ -124,7 +127,7 @@ export default function Navigation() {
               <a
                 href="/articles"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 rounded-lg px-4 py-4 text-lg font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
+                className="font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
               >
                 <FaNewspaper className="text-brand-600 dark:text-brand-400 h-5 w-5" />
                 Publikacje
@@ -134,7 +137,7 @@ export default function Navigation() {
               <a
                 href="/case-studies"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 rounded-lg px-4 py-4 text-lg font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
+                className="font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
               >
                 <FaFlask className="text-brand-600 dark:text-brand-400 h-5 w-5" />
                 Case studies
@@ -144,7 +147,7 @@ export default function Navigation() {
               <a
                 href="/trips"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 rounded-lg px-4 py-4 text-lg font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
+                className="font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
               >
                 <FaMapLocationDot className="text-brand-600 dark:text-brand-400 h-5 w-5" />
                 Podróże
@@ -154,7 +157,7 @@ export default function Navigation() {
               <a
                 href="/events"
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-3 rounded-lg px-4 py-4 text-lg font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
+                className="font-family-mono flex items-center gap-3 rounded-lg px-4 py-4 text-base font-medium text-gray-900 transition-colors hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-800/70"
               >
                 <FaCalendarDays className="text-brand-600 dark:text-brand-400 h-5 w-5" />
                 Wydarzenia

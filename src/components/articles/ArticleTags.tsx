@@ -12,9 +12,9 @@ export default function ArticleTags({ tags = [] }: ArticleTagsProps) {
       {filteredTags.map((tag) => (
         <span
           key={tag}
-          className="bg-brand-50 text-brand-700 dark:bg-brand-400/10 dark:text-brand-400 inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium"
+          className="bg-brand-50 text-brand-700 dark:bg-brand-400/10 dark:text-brand-400 font-family-mono inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium"
         >
-          {tag}
+          #{tag}
         </span>
       ))}
     </div>

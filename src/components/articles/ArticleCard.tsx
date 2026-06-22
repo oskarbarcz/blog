@@ -26,14 +26,14 @@ export default function ArticleCard({
   const href = `${basePath}/${article.slug}`;
 
   return (
-    <article className="group hover:shadow-brand-500/10 relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-800 dark:bg-gray-900/50 dark:backdrop-blur-sm">
+    <article className="group hover:border-brand-400/70 dark:hover:border-brand-500/60 relative flex flex-col overflow-hidden rounded-md border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_12px_32px_-12px_rgba(64,191,126,0.45)] dark:border-gray-800 dark:bg-gray-900/50 dark:backdrop-blur-sm dark:hover:shadow-[0_12px_32px_-12px_rgba(64,191,126,0.35)]">
       {article.coverUrl && (
         <div className="relative h-40 w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
           <a href={href} className="block h-full w-full">
             <img
               src={article.coverUrl}
               alt={article.title}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
             />
           </a>
           <div className="absolute top-3 right-3 flex flex-col items-end gap-2">
@@ -96,7 +96,7 @@ export default function ArticleCard({
                 )}
               </div>
             )}
-          <h2 className="group-hover:text-brand-600 dark:group-hover:text-brand-400 text-xl leading-snug font-bold tracking-tight text-gray-900 transition-colors dark:text-white">
+          <h2 className="group-hover:text-brand-600 dark:group-hover:text-brand-400 text-xl leading-snug font-bold tracking-tight text-gray-900 transition-colors duration-150 dark:text-white">
             <a href={href}>{article.title}</a>
           </h2>
           <p className="line-clamp-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
@@ -117,8 +117,6 @@ export default function ArticleCard({
           </Button>
         </div>
       </div>
-
-      <div className="from-brand-400 via-brand-500 to-brand-600 absolute inset-x-0 bottom-0 h-0.5 bg-linear-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
     </article>
   );
 }

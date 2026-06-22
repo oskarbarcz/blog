@@ -9,7 +9,8 @@ export default function ArticlesHeader({
 }: ArticlesHeaderProps) {
   return (
     <div className="mb-16 space-y-4">
-      <h1 className="text-center text-5xl font-extrabold tracking-tight text-gray-900 sm:text-6xl dark:text-white">
+      <h1 className="font-family-mono text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-white">
+        <span className="text-brand-500 dark:text-brand-400">$&nbsp;</span>
         {title}
       </h1>
       <p className="mx-auto max-w-2xl text-center text-lg leading-relaxed text-gray-600 dark:text-gray-400">

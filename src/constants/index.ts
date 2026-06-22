@@ -1,12 +1,12 @@
 export const DEFAULT_SITE_TITLE = "Mój cyfrowy ogród";
 
-export const SITE_TITLE_SUFFIX = " | oskar's blog";
+export const SITE_TITLE_SUFFIX = " | blog.barcz.me";
 
 export const DEFAULT_SITE_DESCRIPTION =
   "Zawodowo jestem liderem zespołów w obszarze IT i architektem oprogramowania, który z pasją łączy świat komercyjnych innowacji z technologią w służbie społeczeństwu. Na tym blogu zamierzam opisywać swoje przemyślenia oraz publikować dłuższe treści specjalistyczne.";
 
 export const HOMEPAGE_DESCRIPTION =
-  "oskar_blog to blog i strona osobista Oskara Barcza, senior full‑stack developera, który zawodowo tworzy oprogramowanie, występuje na konferencjach i działa w społeczności technologicznej.";
+  "blog.barcz.me to blog i strona osobista Oskara Barcza, senior full‑stack developera, który zawodowo tworzy oprogramowanie, występuje na konferencjach i działa w społeczności technologicznej.";
 
 export const ARTICLES_PAGE_DESCRIPTION =
   "Lista artykułów, które koncentrują się na praktycznych aspektach budowy skalowalnych aplikacji, dobrej architekturze i jakości kodu, bazując na realnych projektach autora.";
@@ -27,7 +27,7 @@ export const ARTICLES_PER_PAGE = 6;
 // SEO constants
 export const SITE_ORIGIN = "https://blog.barcz.me"; // used for canonical/og:url
 export const OG_LOCALE = "pl_PL";
-export const SITE_NAME = "oskar's blog"; // og:site_name
+export const SITE_NAME = "blog.barcz.me"; // og:site_name + displayed brand
 export const PUBLISHER_NAME = "Oskar Barcz";
 export const AUTHOR_NAME = "Oskar Barcz";
 export const TWITTER_HANDLE = "@oskarbarcz";

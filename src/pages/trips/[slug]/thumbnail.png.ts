@@ -182,7 +182,7 @@ export const GET: APIRoute = async ({ props }) => {
               color: "rgba(255,255,255,0.85)",
               display: "flex",
             },
-            children: "oskar_blog",
+            children: "blog.barcz.me",
           },
         },
         // Bottom content stack

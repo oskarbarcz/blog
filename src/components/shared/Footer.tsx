@@ -14,7 +14,7 @@ export default function Footer() {
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex w-full flex-col items-center justify-between gap-3 py-4 md:flex-row">
-          <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="font-family-mono text-sm text-gray-600 dark:text-gray-400">
             <span>
               © 1999–{new Date().getFullYear()}{" "}
               <a href="/" className="hover:underline">
@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className="border-t border-gray-100 py-4 text-center text-xs text-gray-500 dark:border-gray-800 dark:text-gray-500">
+        <p className="font-family-mono border-t border-gray-100 py-4 text-center text-xs text-gray-500 dark:border-gray-800 dark:text-gray-500">
           {FOOTER_PRIVACY_NOTICE}
         </p>
       </div>
