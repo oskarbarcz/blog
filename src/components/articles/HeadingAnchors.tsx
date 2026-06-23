@@ -53,12 +53,22 @@ export default function HeadingAnchors() {
       });
     });
 
-    if (window.location.hash.length > 1) {
-      const id = decodeURIComponent(window.location.hash.slice(1));
+    const pendingHash = window.__pendingHash;
+    const rawHash = pendingHash ?? window.location.hash;
+    if (rawHash.length > 1) {
+      const id = decodeURIComponent(rawHash.slice(1));
       const target = document.getElementById(id);
       if (target) {
         const raf = window.requestAnimationFrame(() => {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (window.__lenis) {
+            window.__lenis.scrollTo(target, { offset: -80, duration: 1 });
+          } else {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+          if (pendingHash) {
+            window.__pendingHash = undefined;
+            window.history.replaceState(null, "", pendingHash);
+          }
         });
         cleanups.push(() => window.cancelAnimationFrame(raf));
       }

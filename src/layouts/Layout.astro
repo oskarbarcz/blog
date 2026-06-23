@@ -7,6 +7,7 @@ import { ThemeInit } from "../../.flowbite-react/init";
 import Navigation from "../components/shared/Navigation.tsx";
 import Footer from "../components/shared/Footer.tsx";
 import Analytics from "../components/shared/Analytics.astro";
+import SmoothScroll from "../components/shared/SmoothScroll.astro";
 import { DEFAULT_SITE_TITLE, SITE_TITLE_SUFFIX } from "../constants";
 ---
 
@@ -15,6 +16,21 @@ import { DEFAULT_SITE_TITLE, SITE_TITLE_SUFFIX } from "../constants";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <script is:inline>
+      (() => {
+        if (window.location.hash.length > 1) {
+          window.__pendingHash = window.location.hash;
+          try {
+            history.scrollRestoration = "manual";
+          } catch {}
+          history.replaceState(
+            null,
+            "",
+            window.location.pathname + window.location.search,
+          );
+        }
+      })();
+    </script>
     <meta name="generator" content={Astro.generator} />
     <meta name="format-detection" content="telephone=no" />
     <title>
@@ -58,6 +74,7 @@ import { DEFAULT_SITE_TITLE, SITE_TITLE_SUFFIX } from "../constants";
   </head>
   <body class="flex min-h-dvh flex-col">
     <ThemeInit />
+    <SmoothScroll />
     <Navigation client:load pathname={Astro.url.pathname} />
     <div
       id="page-content"

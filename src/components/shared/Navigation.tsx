@@ -66,11 +66,11 @@ export default function Navigation({ pathname = "/" }: NavigationProps) {
   return (
     <div
       id="site-navigation"
-      className="sticky top-0 z-50 border-b border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-950"
+      className="sticky top-0 z-50 border-b border-gray-200 bg-white/40 backdrop-blur-md dark:border-gray-800 dark:bg-gray-950/40"
     >
       <Navbar
         fluid
-        className="mx-auto max-w-7xl bg-transparent px-4 sm:px-6 lg:px-8 dark:bg-gray-950"
+        className="mx-auto max-w-7xl bg-transparent px-4 sm:px-6 lg:px-8 dark:bg-transparent"
       >
         <NavbarBrand
           className="font-family-mono text-brand-600 dark:text-brand-400 text-lg font-bold"
