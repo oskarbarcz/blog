@@ -10,7 +10,6 @@ interface ArticlesListProps {
   articles: Article[];
   title?: string;
   subtitle?: string;
-  /** URL prefix for card links, e.g. "/articles" or "/case-studies". */
   basePath?: string;
 }
 
@@ -30,11 +29,15 @@ export default function ArticlesList({
 
   const onPageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
-    <main className="relative bg-linear-to-br from-gray-50 via-white to-gray-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
+    <main className="relative">
       <div className="relative mx-auto max-w-7xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24 lg:pb-12">
         <ArticlesHeader title={title} subtitle={subtitle} />
         <ArticlesGrid>

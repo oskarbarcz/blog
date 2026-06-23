@@ -6,7 +6,6 @@ export default function PhotoSwipeInit() {
   useEffect(() => {
     let lightbox: PhotoSwipeLightbox | null = null;
 
-    // Helper: wrap images inside .pswp-gallery with anchors (idempotent)
     const wrapImages = (): boolean => {
       let changed = false;
       const galleries = Array.from(
@@ -25,12 +24,10 @@ export default function PhotoSwipeInit() {
             const src = img.currentSrc || img.src;
             a.href = src;
             a.setAttribute("data-pswp-src", src);
-            // If we know dimensions, pass them for better zoom animation
             if (img.naturalWidth && img.naturalHeight) {
               a.setAttribute("data-pswp-width", String(img.naturalWidth));
               a.setAttribute("data-pswp-height", String(img.naturalHeight));
             }
-            // Preserve layout classes on the image; move image inside anchor
             parent.replaceChild(a, img);
             a.appendChild(img);
             changed = true;
@@ -57,13 +54,10 @@ export default function PhotoSwipeInit() {
       lightbox.init();
     };
 
-    // Initial pass
     wrapImages();
     initLightbox();
 
-    // Observe future DOM changes (React/Astro client islands may render later)
     const observer = new MutationObserver(() => {
-      // Debounce via rAF to batch many mutations
       if (typeof window !== "undefined") {
         window.requestAnimationFrame(() => {
           const didChange = wrapImages();

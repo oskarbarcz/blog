@@ -15,7 +15,7 @@
   --color-brand-900: #064e3b;
   --color-brand-950: #022c22;
 
-  --font-family-mono: "Roboto Mono", ui-monospace, monospace;
+  --font-family-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --font-family-slab: "Roboto Slab", ui-serif, serif;
   --font-family-sans:
     ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
@@ -24,9 +24,25 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Base typography */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 html:where(:not(.dark)) body {
-  color: rgb(17 24 39); /* gray-900 */
+  color: rgb(17 24 39);
 }
 
 body {
@@ -34,16 +50,14 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(249 250 251); /* gray-50 */
+  background-color: rgb(249 250 251);
 }
 
-/* Dark mode base (class is applied on html element) */
 html.dark body {
-  background-color: rgb(17 24 39); /* gray-900 */
-  color: rgb(243 244 246); /* gray-100 */
+  background-color: rgb(2 4 9);
+  color: rgb(243 244 246);
 }
 
-/* Article reading-progress bar (sits just below the sticky navigation) */
 .reading-progress {
   position: fixed;
   left: 0;
@@ -67,7 +81,30 @@ html.dark body {
   will-change: transform;
 }
 
-/* Keyframes for hero blob morphing (used via Tailwind animate-[...]) */
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-[blobMorph"] {
+    animation: none !important;
+  }
+}
+
+.blob-grain {
+  --blob-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  -webkit-mask-image:
+    var(--blob-noise), radial-gradient(closest-side, #000 35%, transparent 100%);
+  mask-image:
+    var(--blob-noise), radial-gradient(closest-side, #000 35%, transparent 100%);
+  -webkit-mask-size:
+    120px 120px,
+    100% 100%;
+  mask-size:
+    120px 120px,
+    100% 100%;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-repeat: repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
 @keyframes blobMorph {
   0% {
     border-radius: 43% 57% 60% 40% / 44% 46% 54% 56%;

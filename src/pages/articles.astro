@@ -5,10 +5,8 @@ import Meta from "../components/shared/Meta.astro";
 import Layout from "../layouts/Layout.astro";
 import { ARTICLES_PAGE_DESCRIPTION } from "../constants";
 
-// Fetch all articles from the content collection
 const allArticles = await getCollection("articles");
 
-// Sort articles by date (newest first) and transform data
 const articles = allArticles
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .map((article) => ({

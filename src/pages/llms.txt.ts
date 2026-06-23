@@ -44,7 +44,6 @@ export async function GET() {
 
   content += `## Articles\n\n`;
   sortedArticles.forEach((article) => {
-    // Sanitize excerpt: remove newlines and extra spaces
     const excerpt = article.data.excerpt.replace(/\s+/g, " ").trim();
     content += `- [${article.data.title}](${SITE_ORIGIN}/articles/${article.id}): ${excerpt}\n`;
   });

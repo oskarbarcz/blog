@@ -19,8 +19,8 @@ interface Props {
   image?: string;
   imageAlt?: string;
   type?: "website" | "article";
-  publishedTime?: string; // ISO string
-  modifiedTime?: string; // ISO string
+  publishedTime?: string;
+  modifiedTime?: string;
   authorName?: string;
   keywords?: string[];
 }
@@ -58,14 +58,12 @@ const isHome = Astro.url.pathname === "/";
 const resolvedAuthor = authorName ?? AUTHOR_NAME;
 ---
 
-<!-- Primary Meta Tags -->
 <meta name="title" content={effectiveTitle} />
 <meta name="description" content={effectiveDescription} />
 <meta name="author" content={resolvedAuthor} />
 {keywords && <meta name="keywords" content={keywords.join(", ")} />}
 <meta name="robots" content="index,follow" />
 
-<!-- Open Graph / Facebook -->
 <meta property="og:type" content={type} />
 <meta property="og:title" content={effectiveTitle} />
 <meta property="og:description" content={effectiveDescription} />
@@ -99,7 +97,6 @@ const resolvedAuthor = authorName ?? AUTHOR_NAME;
   )
 }
 
-<!-- Twitter -->
 <meta name="twitter:card" content={twitterCard} />
 <meta name="twitter:site" content={TWITTER_HANDLE} />
 <meta name="twitter:creator" content={TWITTER_HANDLE} />
@@ -114,7 +111,6 @@ const resolvedAuthor = authorName ?? AUTHOR_NAME;
 
 <link rel="canonical" href={canonical} />
 
-<!-- Structured Data -->
 {
   isHome && (
     <script

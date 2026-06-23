@@ -16,18 +16,35 @@ interface ColumnHeaderProps {
 
 function ColumnHeader({ title, href }: ColumnHeaderProps) {
   return (
-    <div className="mb-4 flex items-center justify-between gap-4">
-      <h2 className="font-family-slab text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <div className="mb-4 flex items-baseline justify-between gap-3">
+      <h2 className="font-family-mono text-lg font-bold tracking-tight whitespace-nowrap text-gray-900 dark:text-white">
+        <span className="text-brand-500 dark:text-brand-400">&gt;&nbsp;</span>
         {title}
       </h2>
       <a
         href={href}
-        className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex items-center gap-1 text-sm font-medium"
+        className="group/all font-family-mono text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 hidden shrink-0 items-center gap-1 text-xs whitespace-nowrap transition-colors sm:inline-flex"
       >
+        <span className="text-gray-400 dark:text-gray-500">[</span>
         Zobacz wszystkie
-        <FaArrowRight className="h-3.5 w-3.5" />
+        <FaArrowRight className="h-2.5 w-2.5 transition-transform duration-150 group-hover/all:translate-x-0.5" />
+        <span className="text-gray-400 dark:text-gray-500">]</span>
       </a>
     </div>
+  );
+}
+
+function MobileSeeAll({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      className="group/all font-family-mono text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 mt-6 flex w-full items-center justify-end gap-1 text-sm transition-colors sm:hidden"
+    >
+      <span className="text-gray-400 dark:text-gray-500">[</span>
+      Zobacz wszystkie
+      <FaArrowRight className="h-3 w-3 transition-transform duration-150 group-hover/all:translate-x-0.5" />
+      <span className="text-gray-400 dark:text-gray-500">]</span>
+    </a>
   );
 }
 
@@ -52,17 +69,19 @@ export default function HomeCaseStudiesAndTrips({
                   />
                 ))}
               </div>
+              <MobileSeeAll href="/case-studies" />
             </div>
           ) : null}
 
           {trips?.length ? (
             <div className="lg:col-span-1">
-              <ColumnHeader title="Najnowsze podróże" href="/trips" />
+              <ColumnHeader title="Ostatnie podróże" href="/trips" />
               <div className="grid grid-cols-1 gap-6">
                 {trips.map((trip) => (
                   <TripCard key={trip.slug} trip={trip} />
                 ))}
               </div>
+              <MobileSeeAll href="/trips" />
             </div>
           ) : null}
         </div>

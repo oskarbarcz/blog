@@ -1,14 +1,10 @@
-/* Dedicated article content stylesheet */
-
-/* Container */
 .article-content {
   max-width: 72ch;
   margin-inline: auto;
-  font-size: 1.0625rem; /* ~17px */
+  font-size: 1.0625rem;
   line-height: 1.8;
 }
 
-/* Headings */
 .article-content h1,
 .article-content h2,
 .article-content h3,
@@ -34,8 +30,6 @@
   font-size: 1.25rem;
 }
 
-/* The copy-anchor flows inline right after the heading text, sized in `em`
-   so it scales with the heading and stays vertically centered on the text. */
 .article-content .heading-anchor {
   display: inline-flex;
   align-items: center;
@@ -44,7 +38,6 @@
   margin-left: 0.4em;
   width: 0.9em;
   height: 0.9em;
-  /* nudge the icon down so its centre lines up with the cap-height of the text */
   transform: translateY(0.08em);
   padding: 0;
   border: 0;
@@ -74,12 +67,10 @@
   color: var(--color-brand-600);
 }
 
-/* Paragraphs */
 .article-content p {
   margin: 1em 0;
 }
 
-/* Lists */
 .article-content ul,
 .article-content ol {
   padding-left: 1.25rem;
@@ -104,7 +95,6 @@
   margin-bottom: 0.25em;
 }
 
-/* Nested list marker styles */
 .article-content li > ul {
   list-style: circle;
 }
@@ -113,49 +103,45 @@
   list-style: square;
 }
 
-/* Ensure list markers are visible in both themes */
 .article-content li::marker {
-  color: rgb(75 85 99); /* gray-600 */
+  color: rgb(75 85 99);
 }
 
 .dark .article-content li::marker {
-  color: rgb(156 163 175); /* gray-400 */
+  color: rgb(156 163 175);
 }
 
-/* Blockquote */
 .article-content blockquote {
-  border-left: 4px solid rgb(229 231 235); /* gray-200 */
+  border-left: 4px solid rgb(229 231 235);
   padding-left: 1rem;
-  color: rgb(75 85 99); /* gray-600 */
+  color: rgb(75 85 99);
   margin: 1.25em 0;
   font-style: italic;
 }
 
 .dark .article-content blockquote {
-  border-left-color: rgb(31 41 55); /* gray-800 */
-  color: rgb(156 163 175); /* gray-400 */
+  border-left-color: rgb(31 41 55);
+  color: rgb(156 163 175);
 }
 
-/* Code (inline) */
 .article-content code {
   font-family: var(--font-family-mono);
   font-size: 0.95em;
-  background: rgb(243 244 246); /* gray-100 */
-  color: rgb(17 24 39); /* gray-900 */
+  background: rgb(243 244 246);
+  color: rgb(17 24 39);
   padding: 0.15em 0.35em;
   border-radius: 0.25rem;
 }
 
 .dark .article-content code {
   background: transparent;
-  color: rgb(229 231 235); /* gray-200 */
+  color: rgb(229 231 235);
 }
 
-/* Preformatted blocks */
 .article-content pre {
   font-family: var(--font-family-mono);
-  background: rgb(243 244 246); /* gray-100 */
-  color: rgb(17 24 39); /* gray-900 */
+  background: rgb(243 244 246);
+  color: rgb(17 24 39);
   padding: 1rem;
   overflow: auto;
   border-radius: 0.5rem;
@@ -169,16 +155,14 @@
 }
 
 .dark .article-content pre {
-  /* Revert to dark panel in dark mode; keep scrolling */
-  background: rgb(17 24 39); /* gray-900 */
-  color: rgb(229 231 235); /* gray-200 */
+  background: rgb(17 24 39);
+  color: rgb(229 231 235);
   border: none;
 }
 
-/* Scrollbars for code blocks */
 .article-content pre {
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: rgb(209 213 219) transparent; /* thumb, track in light */
+  scrollbar-width: thin;
+  scrollbar-color: rgb(209 213 219) transparent;
 }
 
 .article-content pre::-webkit-scrollbar {
@@ -191,20 +175,19 @@
 }
 
 .article-content pre::-webkit-scrollbar-thumb {
-  background-color: rgb(209 213 219); /* gray-300 */
+  background-color: rgb(209 213 219);
   border-radius: 8px;
   border: 2px solid transparent;
   background-clip: content-box;
 }
 
-/* Dark theme: use dark scrollbars on code elements */
 .dark .article-content pre {
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: rgb(209 213 219) transparent; /* gray-300 thumb on transparent track */
+  scrollbar-width: thin;
+  scrollbar-color: rgb(209 213 219) transparent;
 }
 
 .dark .article-content pre::-webkit-scrollbar-thumb {
-  background-color: rgb(31 41 55); /* gray-800 */
+  background-color: rgb(31 41 55);
   border-color: transparent;
 }
 
@@ -212,7 +195,6 @@
   background: transparent;
 }
 
-/* Tables */
 .article-content table {
   width: 100%;
   border-collapse: collapse;
@@ -222,35 +204,33 @@
 
 .article-content thead th {
   text-align: left;
-  border-bottom: 2px solid rgb(229 231 235); /* gray-200 */
+  border-bottom: 2px solid rgb(229 231 235);
   padding: 0.5rem 0.75rem;
 }
 
 .article-content tbody td {
-  border-top: 1px solid rgb(229 231 235); /* gray-200 */
+  border-top: 1px solid rgb(229 231 235);
   padding: 0.5rem 0.75rem;
 }
 
 .dark .article-content thead th {
-  border-bottom-color: rgb(55 65 81); /* gray-700 */
+  border-bottom-color: rgb(55 65 81);
 }
 
 .dark .article-content tbody td {
-  border-top-color: rgb(55 65 81); /* gray-700 */
+  border-top-color: rgb(55 65 81);
 }
 
-/* Horizontal rule */
 .article-content hr {
   border: 0;
-  border-top: 1px solid rgb(229 231 235); /* gray-200 */
+  border-top: 1px solid rgb(229 231 235);
   margin: 2rem 0;
 }
 
 .dark .article-content hr {
-  border-top-color: rgb(55 65 81); /* gray-700 */
+  border-top-color: rgb(55 65 81);
 }
 
-/* Media */
 .article-content img,
 .article-content video,
 .article-content iframe {
@@ -274,7 +254,6 @@
   color: rgb(156 163 175);
 }
 
-/* Links */
 .article-content a {
   color: var(--color-brand-600);
   text-decoration: underline;
@@ -293,7 +272,6 @@
   color: var(--color-brand-300);
 }
 
-/* Misc */
 .article-content kbd {
   background: rgb(243 244 246);
   border: 1px solid rgb(229 231 235);
@@ -324,7 +302,6 @@
   opacity: 0.75;
 }
 
-/* Details/Summary */
 .article-content details {
   background: rgb(249 250 251);
   border: 1px solid rgb(229 231 235);
