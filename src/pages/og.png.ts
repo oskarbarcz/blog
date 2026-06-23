@@ -45,12 +45,12 @@ export const GET: APIRoute = async () => {
           type: "div",
           props: {
             style: {
-              fontSize: "120px",
+              fontSize: "84px",
               fontWeight: 700,
               color: BRAND_COLOR,
               display: "flex",
             },
-            children: "oskar.blog",
+            children: "blog.barcz.me",
           },
         },
       ],
