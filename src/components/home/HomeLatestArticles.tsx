@@ -22,7 +22,7 @@ export default function HomeLatestArticles({
           </h2>
           <a
             href="/articles"
-            className="group/all font-family-mono text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 inline-flex shrink-0 items-center gap-1 text-xs whitespace-nowrap transition-colors"
+            className="group/all font-family-mono text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 hidden shrink-0 items-center gap-1 text-xs whitespace-nowrap transition-colors sm:inline-flex"
           >
             <span className="text-gray-400 dark:text-gray-500">[</span>
             Zobacz wszystkie
@@ -36,6 +36,16 @@ export default function HomeLatestArticles({
             <ArticleCard key={a.slug} article={a} />
           ))}
         </div>
+
+        <a
+          href="/articles"
+          className="group/all font-family-mono text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 mt-6 flex w-full items-center justify-end gap-1 text-sm transition-colors sm:hidden"
+        >
+          <span className="text-gray-400 dark:text-gray-500">[</span>
+          Zobacz wszystkie
+          <FaArrowRight className="h-3 w-3 transition-transform duration-150 group-hover/all:translate-x-0.5" />
+          <span className="text-gray-400 dark:text-gray-500">]</span>
+        </a>
       </div>
     </section>
   );

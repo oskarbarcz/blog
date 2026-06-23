@@ -74,30 +74,30 @@ html.dark body {
   }
 }
 
-/* Hero atmosphere: a grainy "haze" concentrated near the top of the hero that
-   fades out via a radial gradient mask — not a flat full-page texture. The
-   noise is an inline SVG (no external asset); blend is per-theme so the
-   speckles stay visible on both near-black and near-white. */
-.hero-haze {
-  pointer-events: none;
-  background-size: 170px 170px;
-  -webkit-mask-image: radial-gradient(
-    115% 80% at 75% 0%,
-    #000 0%,
-    transparent 70%
-  );
-  mask-image: radial-gradient(115% 80% at 75% 0%, #000 0%, transparent 70%);
-  /* light: sparse DARK specks on a white field (RGB inverted), multiplied. */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='gamma' exponent='3'/%3E%3CfeFuncG type='gamma' exponent='3'/%3E%3CfeFuncB type='gamma' exponent='3'/%3E%3CfeFuncA type='discrete' tableValues='1'/%3E%3C/feComponentTransfer%3E%3CfeColorMatrix type='matrix' values='-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.6;
-  mix-blend-mode: multiply;
-}
-
-html.dark .hero-haze {
-  /* dark: sparse BRIGHT specks on a black field, screened. */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='gamma' exponent='3'/%3E%3CfeFuncG type='gamma' exponent='3'/%3E%3CfeFuncB type='gamma' exponent='3'/%3E%3CfeFuncA type='discrete' tableValues='1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.5;
-  mix-blend-mode: screen;
+/* Grain "filter" for the hero blob: the blob's green gradient is punched by a
+   noise alpha mask, so it renders as a field of grain in the blob's shape and
+   morphs with the animation (the mask isn't blurred by the blob's filter, so
+   the speckle stays crisp over the soft glow). Inline SVG, no external asset. */
+.blob-grain {
+  --blob-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* Two mask layers, intersected: the tiled noise (grain) AND a radial fade
+     that goes transparent toward the blob's edge — so the grain never reaches
+     the square box boundary and there's no hard edge, even where the gradient
+     is still opaque. */
+  -webkit-mask-image:
+    var(--blob-noise), radial-gradient(closest-side, #000 35%, transparent 100%);
+  mask-image:
+    var(--blob-noise), radial-gradient(closest-side, #000 35%, transparent 100%);
+  -webkit-mask-size:
+    120px 120px,
+    100% 100%;
+  mask-size:
+    120px 120px,
+    100% 100%;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-repeat: repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 /* Keyframes for hero blob morphing (used via Tailwind animate-[...]) */

@@ -23,7 +23,7 @@ function ColumnHeader({ title, href }: ColumnHeaderProps) {
       </h2>
       <a
         href={href}
-        className="group/all font-family-mono text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 inline-flex shrink-0 items-center gap-1 text-xs whitespace-nowrap transition-colors"
+        className="group/all font-family-mono text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 hidden shrink-0 items-center gap-1 text-xs whitespace-nowrap transition-colors sm:inline-flex"
       >
         <span className="text-gray-400 dark:text-gray-500">[</span>
         Zobacz wszystkie
@@ -31,6 +31,22 @@ function ColumnHeader({ title, href }: ColumnHeaderProps) {
         <span className="text-gray-400 dark:text-gray-500">]</span>
       </a>
     </div>
+  );
+}
+
+/* On mobile the header link is hidden (it overflows the heading line); show it
+   under the column's items instead. */
+function MobileSeeAll({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      className="group/all font-family-mono text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 mt-6 flex w-full items-center justify-end gap-1 text-sm transition-colors sm:hidden"
+    >
+      <span className="text-gray-400 dark:text-gray-500">[</span>
+      Zobacz wszystkie
+      <FaArrowRight className="h-3 w-3 transition-transform duration-150 group-hover/all:translate-x-0.5" />
+      <span className="text-gray-400 dark:text-gray-500">]</span>
+    </a>
   );
 }
 
@@ -55,6 +71,7 @@ export default function HomeCaseStudiesAndTrips({
                   />
                 ))}
               </div>
+              <MobileSeeAll href="/case-studies" />
             </div>
           ) : null}
 
@@ -66,6 +83,7 @@ export default function HomeCaseStudiesAndTrips({
                   <TripCard key={trip.slug} trip={trip} />
                 ))}
               </div>
+              <MobileSeeAll href="/trips" />
             </div>
           ) : null}
         </div>

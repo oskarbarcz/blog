@@ -106,7 +106,7 @@ export default function ArticleCard({
 
           <a
             href={href}
-            className="group/read font-family-mono text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 inline-flex shrink-0 items-center gap-1 text-xs font-medium whitespace-nowrap transition-colors"
+            className="group/read font-family-mono text-brand-600 hover:text-brand-500 dark:text-brand-400 dark:hover:text-brand-300 ml-auto inline-flex shrink-0 items-center gap-1 text-xs font-medium whitespace-nowrap transition-colors"
           >
             <span className="text-gray-400 dark:text-gray-500">[</span>
             Przeczytaj

@@ -29,7 +29,7 @@ export default function Footer() {
             </span>
           </div>
 
-          <div className="font-family-mono flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
+          <div className="font-family-mono grid grid-cols-2 justify-items-center gap-x-6 gap-y-3 text-xs sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-4 sm:gap-y-2">
             {SOCIALS.map(({ href, label }) => (
               <a
                 key={label}
