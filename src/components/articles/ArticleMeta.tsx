@@ -1,7 +1,7 @@
 import { FaCalendarDays, FaClock } from "react-icons/fa6";
 
 interface ArticleMetaProps {
-  date: string; // ISO string
+  date: string;
   readTime: string;
 }
 

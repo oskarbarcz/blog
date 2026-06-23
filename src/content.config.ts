@@ -2,8 +2,6 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import z from "zod";
 
-// Shared by `articles` and `caseStudies` — they have identical frontmatter,
-// they just live in separate collections so they get separate URLs.
 const articleSchema = z.object({
   title: z.string(),
   excerpt: z.string(),
@@ -29,7 +27,7 @@ const caseStudies = defineCollection({
 const events = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/events" }),
   schema: z.object({
-    title: z.string(), // event name
+    title: z.string(),
     role: z.enum(["guest", "speaker", "panelist", "participant", "organizer"]),
     date: z.date(),
     city: z.string(),
@@ -49,7 +47,6 @@ const events = defineCollection({
       .default([]),
     links: z
       .object({
-        // Allow internal article links (e.g., /articles/my-post) or full URLs
         article: z.union([z.url(), z.string().regex(/^\//)]).optional(),
         youtube: z.url().optional(),
         linkedin: z.url().optional(),
@@ -62,8 +59,6 @@ const events = defineCollection({
 });
 
 const trips = defineCollection({
-  // Single-segment glob so colocated asset folders (e.g. images alongside the
-  // .md) are not picked up as collection entries.
   loader: glob({ pattern: "*.md", base: "./src/content/trips" }),
   schema: ({ image }) =>
     z.object({
@@ -82,7 +77,6 @@ const trips = defineCollection({
             }),
             startDate: z.date(),
             endDate: z.date().optional(),
-            // Markdown — parsed with `marked` at render time
             content: z.string(),
             images: z.array(image()).min(1),
           }),

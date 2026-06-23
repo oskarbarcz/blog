@@ -6,7 +6,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { AUTHOR_NAME, AUTHOR_PHOTO, BRAND_COLOR } from "../../../constants";
 const satori = satoriLib as unknown as (
-  // “anything in, promise of string out”
   jsx: any,
   options: any,
 ) => Promise<string>;

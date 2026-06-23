@@ -34,8 +34,6 @@ function ColumnHeader({ title, href }: ColumnHeaderProps) {
   );
 }
 
-/* On mobile the header link is hidden (it overflows the heading line); show it
-   under the column's items instead. */
 function MobileSeeAll({ href }: { href: string }) {
   return (
     <a

@@ -15,7 +15,7 @@ export default function HeadingAnchors() {
     const cleanups: Array<() => void> = [];
 
     headings.forEach((heading) => {
-      if (heading.querySelector(":scope > .heading-anchor")) return; // idempotent
+      if (heading.querySelector(":scope > .heading-anchor")) return;
       heading.classList.add("heading-anchor-wrapper");
 
       const button = document.createElement("button");
@@ -30,10 +30,7 @@ export default function HeadingAnchors() {
         const url = `${window.location.origin}${window.location.pathname}#${heading.id}`;
         try {
           await navigator.clipboard.writeText(url);
-        } catch {
-          // Clipboard API may be unavailable (e.g. non-secure context) — ignore.
-        }
-        // Reflect the anchor in the address bar without triggering a jump.
+        } catch {}
         window.history.replaceState(null, "", `#${heading.id}`);
 
         button.innerHTML = CHECK_SVG;
@@ -56,7 +53,6 @@ export default function HeadingAnchors() {
       });
     });
 
-    // Auto-scroll to the targeted section when arriving with a hash.
     if (window.location.hash.length > 1) {
       const id = decodeURIComponent(window.location.hash.slice(1));
       const target = document.getElementById(id);

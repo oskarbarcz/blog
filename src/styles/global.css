@@ -24,9 +24,8 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Base typography */
 html:where(:not(.dark)) body {
-  color: rgb(17 24 39); /* gray-900 */
+  color: rgb(17 24 39);
 }
 
 body {
@@ -34,16 +33,14 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(249 250 251); /* gray-50 */
+  background-color: rgb(249 250 251);
 }
 
-/* Dark mode base (class is applied on html element) */
 html.dark body {
-  background-color: rgb(2 4 9); /* near-black, darker than gray-950 */
-  color: rgb(243 244 246); /* gray-100 */
+  background-color: rgb(2 4 9);
+  color: rgb(243 244 246);
 }
 
-/* Article reading-progress bar (sits just below the sticky navigation) */
 .reading-progress {
   position: fixed;
   left: 0;
@@ -67,23 +64,14 @@ html.dark body {
   will-change: transform;
 }
 
-/* Respect users who prefer reduced motion: stop the ambient hero blob. */
 @media (prefers-reduced-motion: reduce) {
   [class*="animate-[blobMorph"] {
     animation: none !important;
   }
 }
 
-/* Grain "filter" for the hero blob: the blob's green gradient is punched by a
-   noise alpha mask, so it renders as a field of grain in the blob's shape and
-   morphs with the animation (the mask isn't blurred by the blob's filter, so
-   the speckle stays crisp over the soft glow). Inline SVG, no external asset. */
 .blob-grain {
   --blob-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  /* Two mask layers, intersected: the tiled noise (grain) AND a radial fade
-     that goes transparent toward the blob's edge — so the grain never reaches
-     the square box boundary and there's no hard edge, even where the gradient
-     is still opaque. */
   -webkit-mask-image:
     var(--blob-noise), radial-gradient(closest-side, #000 35%, transparent 100%);
   mask-image:
@@ -100,7 +88,6 @@ html.dark body {
   mask-composite: intersect;
 }
 
-/* Keyframes for hero blob morphing (used via Tailwind animate-[...]) */
 @keyframes blobMorph {
   0% {
     border-radius: 43% 57% 60% 40% / 44% 46% 54% 56%;

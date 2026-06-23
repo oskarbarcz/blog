@@ -8,8 +8,6 @@ import { TRIPS_PAGE_DESCRIPTION } from "../constants";
 
 const allTrips = await getCollection("trips");
 
-// Sort by start date (newest first), then resolve cover thumbs through the
-// Astro image pipeline so the listing only loads small webp variants.
 const trips = await Promise.all(
   allTrips
     .sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime())

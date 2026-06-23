@@ -40,12 +40,6 @@ import { DEFAULT_SITE_TITLE, SITE_TITLE_SUFFIX } from "../constants";
       rel="stylesheet"
     />
     <ThemeModeScript />
-    {
-      /* Re-apply the theme before paint on view-transition navigations so the
-        page doesn't flash the opposite theme (the swapped-in <html> starts
-        without the `dark` class). The listener lives on `document`, which
-        persists across transitions, so registering it once is enough. */
-    }
     <script is:inline>
       (() => {
         const applyTheme = () => {

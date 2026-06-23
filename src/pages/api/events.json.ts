@@ -1,8 +1,6 @@
 import { getCollection } from "astro:content";
 import { SITE_ORIGIN } from "../../constants";
 
-// Resolve site-relative paths (e.g. /photos/events/foo/1.jpg or /articles/bar)
-// to absolute URLs; pass full URLs through unchanged.
 function toAbsolute(path: string): string {
   if (/^https?:\/\//.test(path)) return path;
   return `${SITE_ORIGIN}${path.startsWith("/") ? "" : "/"}${path}`;

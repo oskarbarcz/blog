@@ -3,7 +3,7 @@ import RoleBadge from "./RoleBadge.tsx";
 export interface CompactEventData {
   title: string;
   role: "guest" | "speaker" | "panelist" | "participant" | "organizer";
-  date: string; // ISO
+  date: string;
   city: string;
 }
 

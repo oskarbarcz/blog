@@ -1,4 +1,3 @@
-// @ts-check
 import { readFileSync } from "node:fs";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
@@ -24,7 +23,6 @@ export default defineConfig({
   },
   integrations: [react(), flowbiteReact(), sitemap()],
   vite: {
-    // @ts-ignore - Plugin type mismatch between Astro's bundled Vite and local Vite
     plugins: [tailwindcss()],
   },
 });

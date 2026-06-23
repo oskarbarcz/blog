@@ -26,22 +26,18 @@ const NAV_ITEMS = [
 ];
 
 interface NavigationProps {
-  /** Current page path, passed from the Astro layout so the active link is
-      correct on first paint (no hydration flash). */
   pathname?: string;
 }
 
 export default function Navigation({ pathname = "/" }: NavigationProps) {
   const [open, setOpen] = useState(false);
 
-  // Normalize away any trailing slash for matching.
   const current = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
   const isActive = (href: string) =>
     href === "/"
       ? current === "/"
       : current === href || current.startsWith(`${href}/`);
 
-  // Lock body scroll when mobile drawer is open
   useEffect(() => {
     if (typeof document === "undefined") return;
     const html = document.documentElement;
@@ -50,7 +46,6 @@ export default function Navigation({ pathname = "/" }: NavigationProps) {
     if (open) {
       html.classList.add("overflow-hidden");
       body.classList.add("overflow-hidden");
-      // Reduce background scroll/overscroll on mobile
       body.style.overscrollBehavior = "contain";
       html.style.overscrollBehavior = "contain";
     } else {
@@ -89,7 +84,6 @@ export default function Navigation({ pathname = "/" }: NavigationProps) {
           <NavbarToggle onClick={() => setOpen(true)} />
         </div>
 
-        {/* Desktop nav */}
         <NavbarCollapse className="hidden md:order-2 md:ml-auto md:flex md:items-center md:gap-6">
           {NAV_ITEMS.map(({ href, label }) => (
             <NavbarLink
@@ -107,7 +101,6 @@ export default function Navigation({ pathname = "/" }: NavigationProps) {
         </NavbarCollapse>
       </Navbar>
 
-      {/* Mobile drawer (overlays content, dimmed backdrop, body scroll locked by Flowbite) */}
       <Drawer
         open={open}
         onClose={() => setOpen(false)}

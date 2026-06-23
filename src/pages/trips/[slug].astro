@@ -20,11 +20,6 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props as Props;
 
-// Smart Polish date range:
-//  - same day → "15 kwietnia 2026"
-//  - same month/year → "15 – 17 kwietnia 2026"
-//  - same year → "30 kwietnia – 2 maja 2026"
-//  - different years → "30 grudnia 2025 – 2 stycznia 2026"
 function formatDateRange(start: Date, end?: Date): string {
   const full: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -45,8 +40,6 @@ function formatDateRange(start: Date, end?: Date): string {
   return `${startFull} – ${endFull}`;
 }
 
-// Pre-resolve every section's images into compact webp thumbnails (~500px),
-// keeping the original `src` so the lightbox loads full resolution on demand.
 const sections = await Promise.all(
   entry.data.sections.map(async (section) => {
     const images = await Promise.all(
@@ -75,7 +68,6 @@ const sections = await Promise.all(
   }),
 );
 
-// Restrained cover for the page header.
 const heroCover = await getImage({
   src: entry.data.coverImage,
   width: 1600,
@@ -87,8 +79,6 @@ const dateRange = formatDateRange(entry.data.startDate, entry.data.endDate);
 const totalPhotos = sections.reduce((n, s) => n + s.images.length, 0);
 const ogImage = `/trips/${entry.id}/thumbnail.png`;
 
-// Polish plural: 1 / 2-4 / 5+ (with the 12-14 exception). Used for "miejsce/a"
-// and "zdjęcie/a/" — copy reads correctly across counts.
 function pl(n: number, one: string, few: string, many: string): string {
   if (n === 1) return one;
   const lastTwo = n % 100;
@@ -113,7 +103,6 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
     keywords={entry.data.keywords}
   />
 
-  {/* Breadcrumbs — semantic <ol>, last item is the current page */}
   <nav
     aria-label="Ścieżka nawigacji"
     class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8"
@@ -162,7 +151,6 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
     </ol>
   </nav>
 
-  {/* Cover — letterbox banner, generous gap from breadcrumbs */}
   <div class="mx-auto mt-8 w-full max-w-5xl px-4 sm:mt-10 sm:px-6 lg:px-8">
     <figure
       class="relative aspect-[3/1] w-full overflow-hidden rounded-xl shadow-md ring-1 ring-black/5 sm:rounded-2xl dark:ring-white/10"
@@ -181,7 +169,6 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
     </figure>
   </div>
 
-  {/* Editorial header */}
   <header
     class="mx-auto max-w-2xl px-4 pt-8 pb-8 text-center sm:px-6 sm:pt-10 sm:pb-10"
   >
@@ -215,7 +202,6 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
 
   <PhotoSwipeInit client:load />
 
-  {/* Sections — narrower than the cover, magazine-inset feel */}
   <main class="mx-auto max-w-3xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-20">
     {
       sections.map((section, idx) => {
@@ -223,7 +209,6 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
         const total = String(sections.length).padStart(2, "0");
         return (
           <section class="mb-12 last:mb-0 sm:mb-16">
-            {/* Chapter eyebrow */}
             <div class="mb-3 flex items-center gap-3">
               <span class="bg-brand-500 dark:bg-brand-400 h-px w-10" />
               <span class="text-brand-600 dark:text-brand-400 font-family-slab text-[10px] font-bold tracking-[0.4em] uppercase">
@@ -231,7 +216,6 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
               </span>
             </div>
 
-            {/* Section title — restrained city + italic country */}
             <div class="mb-1 flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
               <h2 class="font-family-slab text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
                 {section.location.city}
@@ -241,7 +225,6 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
               </p>
             </div>
 
-            {/* Section dateline */}
             <time
               datetime={section.startDateIso}
               class="mb-5 block text-xs text-gray-500 italic dark:text-gray-500"
@@ -249,7 +232,6 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
               {section.dateRange}
             </time>
 
-            {/* Body — justified, hyphenated for clean rags */}
             {section.contentHtml && (
               <div
                 class="trip-prose mb-5 text-justify text-sm leading-[1.7] hyphens-auto text-gray-700 sm:text-base dark:text-gray-300"
@@ -257,7 +239,6 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
               />
             )}
 
-            {/* Compact uniform gallery — click any tile to enlarge */}
             <div class="pswp-gallery grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3">
               {section.images.map((img) => (
                 <a
@@ -284,10 +265,6 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
   </main>
 </Layout>
 
-{
-  /* Body styling for the markdown rendered via set:html. Scoped by the
-    `.trip-prose` class which is unique to this page, so is:global is safe. */
-}
 <style is:global>
   .trip-prose :where(p) {
     margin-block: 1.1em;

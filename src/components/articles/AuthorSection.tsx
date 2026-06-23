@@ -9,7 +9,6 @@ import { FaLinkedin } from "react-icons/fa6";
 export default function AuthorSection() {
   return (
     <div className="group mx-auto mt-16 max-w-[72ch]">
-      {/* Fancy Divider */}
       <div className="relative mb-8 flex items-center">
         <div className="h-px grow bg-linear-to-r from-transparent via-gray-200 to-transparent dark:via-gray-800" />
         <div className="bg-brand-500/40 ring-brand-500/10 mx-4 h-1.5 w-1.5 rounded-full ring-4" />

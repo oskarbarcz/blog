@@ -6,7 +6,6 @@ import type { Article } from "./types";
 
 interface ArticleCardProps {
   article: Article;
-  /** URL prefix for this card's links, e.g. "/articles" or "/case-studies". */
   basePath?: string;
 }
 

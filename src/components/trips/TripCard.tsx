@@ -14,14 +14,12 @@ const formatDateRange = (start: string, end?: string): string => {
   });
   if (!end) return startFmt;
   const endDate = new Date(end);
-  // Same day → just show the single date; same month/year → trim repeated parts.
   if (startDate.toDateString() === endDate.toDateString()) return startFmt;
   const endFmt = endDate.toLocaleDateString("pl-PL", {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
-  // Same year → drop the repeated year on the start ("30 kwi – 5 maj 2026").
   if (startDate.getFullYear() === endDate.getFullYear()) {
     const startNoYear = startDate.toLocaleDateString("pl-PL", {
       month: "short",

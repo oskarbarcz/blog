@@ -15,7 +15,7 @@ export interface EventLinks {
 export interface EventItemData {
   title: string;
   role: "guest" | "speaker" | "panelist" | "participant" | "organizer";
-  date: string; // ISO
+  date: string;
   city: string;
   description: string;
   organizer: {
@@ -59,7 +59,6 @@ export default function EventItem({ event }: EventItemProps) {
             </div>
           </div>
 
-          {/* Location directly below the event name (force new line) */}
           <div className="mt-1 flex w-full items-center gap-1 text-xs text-gray-600 dark:text-gray-400">
             <FaLocationDot
               className="text-brand-600 dark:text-brand-400 h-3.5 w-3.5"
@@ -70,7 +69,6 @@ export default function EventItem({ event }: EventItemProps) {
             </span>
           </div>
 
-          {/* Organizer row */}
           <div className="mt-2 flex w-full items-center gap-2 text-xs text-gray-600 dark:text-gray-400">
             {event.organizer?.logo ? (
               <img

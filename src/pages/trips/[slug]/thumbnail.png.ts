@@ -6,7 +6,6 @@ import fs from "node:fs";
 import path from "node:path";
 import { BRAND_COLOR } from "../../../constants";
 const satori = satoriLib as unknown as (
-  // “anything in, promise of string out”
   jsx: any,
   options: any,
 ) => Promise<string>;
@@ -19,10 +18,6 @@ export async function getStaticPaths() {
   }));
 }
 
-// `entry.data.coverImage` is an `ImageMetadata` (post-processed URL), not a
-// filesystem path — to embed the cover into the OG PNG we need raw bytes, so
-// we re-open the trip's markdown and read the `coverImage:` frontmatter line
-// to resolve the original file relative to the .md.
 function loadCoverDataUri(slug: string): string | null {
   const mdDir = path.resolve("./src/content/trips");
   const mdPath = path.join(mdDir, `${slug}.md`);
@@ -49,8 +44,6 @@ function loadCoverDataUri(slug: string): string | null {
   }
 }
 
-// Short DD.MM.YYYY range — drops the redundant parts when start and end share
-// a year and/or month so the OG card stays uncluttered.
 function shortDateRange(start: Date, end?: Date): string {
   const dd = (d: Date) => String(d.getDate()).padStart(2, "0");
   const mm = (d: Date) => String(d.getMonth() + 1).padStart(2, "0");
@@ -68,11 +61,6 @@ function shortDateRange(start: Date, end?: Date): string {
   return `${startFull} – ${dd(end)}.${mm(end)}.${yyyy(end)}`;
 }
 
-// Polish plural: 1 / 2-4 / 5+ with the 12-14 exception.
-//   0 → many  ("0 zdjęć")
-//   1 → one   ("1 zdjęcie")
-//   2-4 → few ("3 zdjęcia")
-//   5+ → many ("5 zdjęć")
 function pl(n: number, one: string, few: string, many: string): string {
   if (n === 1) return one;
   const lastTwo = n % 100;
@@ -119,7 +107,6 @@ export const GET: APIRoute = async ({ props }) => {
         position: "relative",
       },
       children: [
-        // Cover image as full-bleed background
         coverDataUri
           ? {
               type: "img",
@@ -136,7 +123,6 @@ export const GET: APIRoute = async ({ props }) => {
               },
             }
           : null,
-        // Dark gradient overlay so text stays legible on bright covers
         {
           type: "div",
           props: {
@@ -152,7 +138,6 @@ export const GET: APIRoute = async ({ props }) => {
             },
           },
         },
-        // Top-left eyebrow
         {
           type: "div",
           props: {
@@ -169,7 +154,6 @@ export const GET: APIRoute = async ({ props }) => {
             children: "PODRÓŻE",
           },
         },
-        // Top-right brand
         {
           type: "div",
           props: {
@@ -185,7 +169,6 @@ export const GET: APIRoute = async ({ props }) => {
             children: "blog.barcz.me",
           },
         },
-        // Bottom content stack
         {
           type: "div",
           props: {
@@ -209,7 +192,6 @@ export const GET: APIRoute = async ({ props }) => {
                   },
                 },
               },
-              // Title — smaller than before
               {
                 type: "div",
                 props: {
@@ -225,7 +207,6 @@ export const GET: APIRoute = async ({ props }) => {
                   children: title,
                 },
               },
-              // Excerpt — slightly smaller
               {
                 type: "div",
                 props: {
@@ -241,7 +222,6 @@ export const GET: APIRoute = async ({ props }) => {
                   children: excerpt,
                 },
               },
-              // Meta line: short date · places · photos
               {
                 type: "div",
                 props: {

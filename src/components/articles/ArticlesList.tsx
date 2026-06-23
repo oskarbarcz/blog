@@ -10,7 +10,6 @@ interface ArticlesListProps {
   articles: Article[];
   title?: string;
   subtitle?: string;
-  /** URL prefix for card links, e.g. "/articles" or "/case-studies". */
   basePath?: string;
 }
 
