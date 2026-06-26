@@ -1,28 +1,26 @@
 ---
 title: "Nie, nie płacisz za gry najwięcej na świecie"
-excerpt: "Czeski przewoźnik RegioJet wjechał na polskie tory z obietnicą rewolucji, lecz zamiast wykorzystać swoją dynamikę, utopił szansę w chaosie kadrowym, fatalnej obsłudze pasażerów i walce z wiatrakami, którą sam sobie zafundował."
+excerpt: |
+  Viralowa tabela porównująca ceny GTA VI w różnych krajach wprowadza w błąd, zestawiając kwoty brutto z Europy z cenami
+  netto ze Stanów Zjednoczonych. Po uwzględnieniu podatków okazuje się, że polscy gracze wcale nie płacą najwięcej.
+  Tymczasem cała burza to efekt manipulacji i bezrefleksyjnego powielania danych."
 date: 2026-06-26
 readTime: "3 min"
 tags:
   - reactionary
   - gry
   - ekonomia
+  - dezinformacja
 keywords:
-  - regiojet
-  - regiojetpolska
-  - przewoźnik
-  - kolej
-  - pkpintercity
-  - kolejpolska
-  - odwołanepociągi
-  - prawapasażera
-  - utk
-  - maszyniści
-  - problemypasażerów
-  - wolnyrynek
-  - zwrotybiletów
-  - kolejdalekobieżna
-  - warszawakrakówgdynia
+  - GTA VI cena
+  - manipulacja cenami gier
+  - porównanie cen międzynarodowych
+  - VAT vs sales tax
+  - rynek gier w Polsce
+  - siła nabywcza
+  - ceny gier 2026
+  - dezinformacja w mediach
+  - ekonomia gier wideo
 coverUrl: "https://images.unsplash.com/photo-1533106497176-45ae19e68ba2"
 reactionaryContext: |
   Wpis powstał w odpowiedzi na falę populistycznych artykułów, jakoby Polscy gracze płacili (prawie) najwięcej za grę
