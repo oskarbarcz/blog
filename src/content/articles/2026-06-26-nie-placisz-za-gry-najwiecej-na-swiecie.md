@@ -33,8 +33,6 @@ reactionaryContext: |
   Kontekst medialny:
   - [GryOnline | GTA 6 to drogi zakup w Polsce, zwłaszcza w pudełku. Polski wydawca umywa ręce _[dostęp: 26.06.2026r 14:00]_](https://www.gry-online.pl/newsroom/gta-6-to-drogi-zakup-w-polsce-zwlaszcza-w-pudelku-polski-wydawca/z43129e)
   - [MobiManiak | Oficjalne ceny GTA 6 wywołały burzę. Polska wśród najdroższych rynków świata _[dostęp: 26.06.2026r 14:00]_](https://www.mobimaniak.pl/429474/porownanie-cen-gta-6/)
-
-
 ---
 
 Od trzech dni znamy oficjalne ceny Grand Theft Auto VI. Natychmiast niemalże rozpętała się wielka gównoburza o tym, że
