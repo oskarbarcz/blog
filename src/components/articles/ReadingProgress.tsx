@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export default function ReadingProgress() {
   useEffect(() => {
-    const article = document.querySelector<HTMLElement>(".article-content");
+    const article = document.querySelector<HTMLElement>("[data-article-body]");
     if (!article) return;
     const nav = document.getElementById("site-navigation");
 

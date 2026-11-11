@@ -5,7 +5,9 @@ const CHECK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" f
 
 export default function HeadingAnchors() {
   useEffect(() => {
-    const container = document.querySelector<HTMLElement>(".article-content");
+    const container = document.querySelector<HTMLElement>(
+      "[data-article-body]",
+    );
     if (!container) return;
 
     const headings = Array.from(
@@ -61,7 +63,8 @@ export default function HeadingAnchors() {
       if (target) {
         const raf = window.requestAnimationFrame(() => {
           if (window.__lenis) {
-            window.__lenis.scrollTo(target, { offset: -80, duration: 1 });
+            // Lenis already honours the heading's scroll-margin-top.
+            window.__lenis.scrollTo(target, { duration: 1 });
           } else {
             target.scrollIntoView({ behavior: "smooth", block: "start" });
           }

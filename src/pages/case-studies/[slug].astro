@@ -94,16 +94,27 @@ const { Content } = await render(entry);
       </div>
     </header>
 
-    {entry.data.tags?.includes("archive") && <ArchiveContext client:load />}
+    {
+      entry.data.tags?.includes("archive") && (
+        <div class="mx-auto max-w-[72ch]">
+          <ArchiveContext client:load />
+        </div>
+      )
+    }
 
     <PhotoSwipeInit client:load />
     <HeadingAnchors client:load />
     <ReadingProgress client:load />
 
-    <article class="article-content pswp-gallery wrap-break-word">
+    <article
+      class="article-content pswp-gallery wrap-break-word"
+      data-article-body
+    >
       <Content />
     </article>
 
-    <AuthorSection />
+    <div class="mx-auto max-w-[72ch]">
+      <AuthorSection />
+    </div>
   </main>
 </Layout>

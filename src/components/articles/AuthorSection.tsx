@@ -2,13 +2,15 @@ import {
   AUTHOR_NAME,
   AUTHOR_BIO,
   AUTHOR_PHOTO,
+  AUTHOR_MORE_LABEL,
+  PUBLISHER_URL,
   SOCIAL_LINKS,
 } from "../../constants";
 import { FaLinkedin } from "react-icons/fa6";
 
 export default function AuthorSection() {
   return (
-    <div className="group mx-auto mt-16 max-w-[72ch]">
+    <div className="group mt-16">
       <div className="relative mb-8 flex items-center">
         <div className="h-px grow bg-linear-to-r from-transparent via-gray-200 to-transparent dark:via-gray-800" />
         <div className="bg-brand-500/40 ring-brand-500/10 mx-4 h-1.5 w-1.5 rounded-full ring-4" />
@@ -31,7 +33,7 @@ export default function AuthorSection() {
           <p className="mt-2 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
             {AUTHOR_BIO}
           </p>
-          <div className="mt-4 flex justify-center sm:justify-start">
+          <div className="mt-4 flex flex-wrap justify-center gap-3 sm:justify-start">
             <a
               href={SOCIAL_LINKS.linkedin}
               className="bg-brand-50 text-brand-600 hover:bg-brand-100 focus:ring-brand-500 dark:bg-brand-400/10 dark:text-brand-400 dark:hover:bg-brand-400/20 font-family-mono inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-colors focus:ring-2 focus:outline-none"
@@ -40,6 +42,18 @@ export default function AuthorSection() {
             >
               <FaLinkedin className="h-4 w-4" />
               Napisz do mnie na LinkedIn
+            </a>
+            <a
+              href={PUBLISHER_URL}
+              className="group/more focus:ring-brand-500 font-family-mono inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-gray-700 ring-1 ring-gray-200 transition-colors ring-inset hover:bg-gray-50 hover:ring-gray-300 focus:ring-2 focus:outline-none dark:text-gray-300 dark:ring-gray-800 dark:hover:bg-gray-900 dark:hover:ring-gray-700"
+            >
+              {AUTHOR_MORE_LABEL}
+              <span
+                className="transition-transform duration-150 group-hover/more:translate-x-0.5"
+                aria-hidden="true"
+              >
+                →
+              </span>
             </a>
           </div>
         </div>
