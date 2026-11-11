@@ -68,34 +68,30 @@ const resolvedAuthor = authorName ?? AUTHOR_NAME;
 <meta property="og:title" content={effectiveTitle} />
 <meta property="og:description" content={effectiveDescription} />
 <meta property="og:url" content={canonical} />
-{
-  effectiveImage && (
-    <>
-      <meta property="og:image" content={effectiveImage} />
-      <meta property="og:image:type" content="image/png" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
-      {effectiveImageAlt && (
-        <meta property="og:image:alt" content={effectiveImageAlt} />
-      )}
-    </>
-  )
-}
+{effectiveImage && (
+  <>
+    <meta property="og:image" content={effectiveImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    {effectiveImageAlt && (
+      <meta property="og:image:alt" content={effectiveImageAlt} />
+    )}
+  </>
+)}
 <meta property="og:site_name" content={SITE_NAME} />
 <meta property="og:locale" content={OG_LOCALE} />
-{
-  type === "article" && (
-    <>
-      <meta property="article:author" content={resolvedAuthor} />
-      {publishedTime && (
-        <meta property="article:published_time" content={publishedTime} />
-      )}
-      {modifiedTime && (
-        <meta property="article:modified_time" content={modifiedTime} />
-      )}
-    </>
-  )
-}
+{type === "article" && (
+  <>
+    <meta property="article:author" content={resolvedAuthor} />
+    {publishedTime && (
+      <meta property="article:published_time" content={publishedTime} />
+    )}
+    {modifiedTime && (
+      <meta property="article:modified_time" content={modifiedTime} />
+    )}
+  </>
+)}
 
 <meta name="twitter:card" content={twitterCard} />
 <meta name="twitter:site" content={TWITTER_HANDLE} />
@@ -103,74 +99,68 @@ const resolvedAuthor = authorName ?? AUTHOR_NAME;
 <meta name="twitter:title" content={effectiveTitle} />
 <meta name="twitter:description" content={effectiveDescription} />
 {effectiveImage && <meta name="twitter:image" content={effectiveImage} />}
-{
-  effectiveImage && effectiveImageAlt && (
-    <meta name="twitter:image:alt" content={effectiveImageAlt} />
-  )
-}
+{effectiveImage && effectiveImageAlt && (
+  <meta name="twitter:image:alt" content={effectiveImageAlt} />
+)}
 
 <link rel="canonical" href={canonical} />
 
-{
-  isHome && (
-    <script
-      type="application/ld+json"
-      is:inline
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        name: SITE_NAME,
+{isHome && (
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: SITE_ORIGIN,
+      description: effectiveDescription,
+      publisher: {
+        "@type": "Person",
+        name: PUBLISHER_NAME,
         url: SITE_ORIGIN,
-        description: effectiveDescription,
-        publisher: {
-          "@type": "Person",
-          name: PUBLISHER_NAME,
-          url: SITE_ORIGIN,
-          image: resolveImage("/apple-touch-icon.png"),
-        },
-      })}
-    />
-  )
-}
+        image: resolveImage("/apple-touch-icon.png"),
+      },
+    })}
+  />
+)}
 
-{
-  type === "article" && (
-    <script
-      type="application/ld+json"
-      is:inline
-      set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Article",
-        headline: title ?? DEFAULT_SITE_TITLE,
-        description: effectiveDescription,
-        datePublished: publishedTime,
-        ...(modifiedTime ? { dateModified: modifiedTime } : {}),
-        mainEntityOfPage: {
-          "@type": "WebPage",
-          "@id": canonical,
-        },
-        author: {
-          "@type": "Person",
-          name: resolvedAuthor,
-          url: SITE_ORIGIN,
-        },
-        publisher: {
-          "@type": "Person",
-          name: PUBLISHER_NAME,
-          url: SITE_ORIGIN,
-        },
-        ...(effectiveImage
-          ? {
-              image: {
-                "@type": "ImageObject",
-                url: effectiveImage,
-              },
-            }
-          : {}),
-      })}
-    />
-  )
-}
+{type === "article" && (
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: title ?? DEFAULT_SITE_TITLE,
+      description: effectiveDescription,
+      datePublished: publishedTime,
+      ...(modifiedTime ? { dateModified: modifiedTime } : {}),
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonical,
+      },
+      author: {
+        "@type": "Person",
+        name: resolvedAuthor,
+        url: SITE_ORIGIN,
+      },
+      publisher: {
+        "@type": "Person",
+        name: PUBLISHER_NAME,
+        url: SITE_ORIGIN,
+      },
+      ...(effectiveImage
+        ? {
+            image: {
+              "@type": "ImageObject",
+              url: effectiveImage,
+            },
+          }
+        : {}),
+    })}
+  />
+)}
 
 <script
   type="application/ld+json"

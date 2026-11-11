@@ -107,9 +107,7 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
     aria-label="Ścieżka nawigacji"
     class="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8"
   >
-    <ol
-      class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500 dark:text-gray-500"
-    >
+    <ol class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-500 dark:text-gray-500">
       <li>
         <a
           href="/"
@@ -132,7 +130,9 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
           </svg>
         </a>
       </li>
-      <li aria-hidden="true" class="text-brand-500/40">/</li>
+      <li aria-hidden="true" class="text-brand-500/40">
+        /
+      </li>
       <li>
         <a
           href="/trips"
@@ -141,7 +141,9 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
           Podróże
         </a>
       </li>
-      <li aria-hidden="true" class="text-brand-500/40">/</li>
+      <li aria-hidden="true" class="text-brand-500/40">
+        /
+      </li>
       <li
         aria-current="page"
         class="font-medium text-gray-700 dark:text-gray-300"
@@ -152,9 +154,7 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
   </nav>
 
   <div class="mx-auto mt-8 w-full max-w-5xl px-4 sm:mt-10 sm:px-6 lg:px-8">
-    <figure
-      class="relative aspect-[3/1] w-full overflow-hidden rounded-xl shadow-md ring-1 ring-black/5 sm:rounded-2xl dark:ring-white/10"
-    >
+    <figure class="relative aspect-[3/1] w-full overflow-hidden rounded-xl shadow-md ring-1 ring-black/5 sm:rounded-2xl dark:ring-white/10">
       <img
         src={heroCover.src}
         alt={entry.data.title}
@@ -162,106 +162,99 @@ const photosLabel = pl(totalPhotos, "zdjęcie", "zdjęcia", "zdjęć");
         loading="eager"
         decoding="async"
       />
-      <div
-        class="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent"
-      >
-      </div>
+      <div class="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent"></div>
     </figure>
   </div>
 
-  <header
-    class="mx-auto max-w-2xl px-4 pt-8 pb-8 text-center sm:px-6 sm:pt-10 sm:pb-10"
-  >
-    <p
-      class="text-brand-600 dark:text-brand-400 mb-3 flex items-center justify-center gap-3 text-[10px] font-bold tracking-[0.4em] uppercase"
-    >
+  <header class="mx-auto max-w-2xl px-4 pt-8 pb-8 text-center sm:px-6 sm:pt-10 sm:pb-10">
+    <p class="text-brand-600 dark:text-brand-400 mb-3 flex items-center justify-center gap-3 text-[10px] font-bold tracking-[0.4em] uppercase">
       <span class="bg-brand-600/40 dark:bg-brand-400/40 h-px w-8"></span>
       Podróż
       <span class="bg-brand-600/40 dark:bg-brand-400/40 h-px w-8"></span>
     </p>
-    <h1
-      class="font-family-slab text-2xl leading-[1.15] font-bold tracking-tight text-balance text-gray-900 sm:text-3xl lg:text-4xl dark:text-white"
-    >
+    <h1 class="font-family-slab text-2xl leading-[1.15] font-bold tracking-tight text-balance text-gray-900 sm:text-3xl lg:text-4xl dark:text-white">
       {entry.data.title}
     </h1>
-    <p
-      class="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-pretty text-gray-600 italic sm:text-base dark:text-gray-400"
-    >
+    <p class="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-pretty text-gray-600 italic sm:text-base dark:text-gray-400">
       {entry.data.excerpt}
     </p>
-    <div
-      class="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-medium text-gray-500 dark:text-gray-500"
-    >
+    <div class="mt-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs font-medium text-gray-500 dark:text-gray-500">
       <time datetime={entry.data.startDate.toISOString()}>{dateRange}</time>
-      <span class="text-brand-500/40" aria-hidden="true">·</span>
-      <span>{sections.length} {placesLabel}</span>
-      <span class="text-brand-500/40" aria-hidden="true">·</span>
-      <span>{totalPhotos} {photosLabel}</span>
+      <span class="text-brand-500/40" aria-hidden="true">
+        ·
+      </span>
+      <span>
+        {sections.length} {placesLabel}
+      </span>
+      <span class="text-brand-500/40" aria-hidden="true">
+        ·
+      </span>
+      <span>
+        {totalPhotos} {photosLabel}
+      </span>
     </div>
   </header>
 
   <PhotoSwipeInit client:load />
 
   <main class="mx-auto max-w-3xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-20">
-    {
-      sections.map((section, idx) => {
-        const num = String(idx + 1).padStart(2, "0");
-        const total = String(sections.length).padStart(2, "0");
-        return (
-          <section class="mb-12 last:mb-0 sm:mb-16">
-            <div class="mb-3 flex items-center gap-3">
-              <span class="bg-brand-500 dark:bg-brand-400 h-px w-10" />
-              <span class="text-brand-600 dark:text-brand-400 font-family-slab text-[10px] font-bold tracking-[0.4em] uppercase">
-                {num} <span class="text-brand-500/40">/</span> {total}
-              </span>
-            </div>
+    {sections.map((section, idx) => {
+      const num = String(idx + 1).padStart(2, "0");
+      const total = String(sections.length).padStart(2, "0");
+      return (
+        <section class="mb-12 last:mb-0 sm:mb-16">
+          <div class="mb-3 flex items-center gap-3">
+            <span class="bg-brand-500 dark:bg-brand-400 h-px w-10" />
+            <span class="text-brand-600 dark:text-brand-400 font-family-slab text-[10px] font-bold tracking-[0.4em] uppercase">
+              {num} <span class="text-brand-500/40">/</span> {total}
+            </span>
+          </div>
 
-            <div class="mb-1 flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
-              <h2 class="font-family-slab text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
-                {section.location.city}
-              </h2>
-              <p class="text-base font-light text-gray-500 italic sm:text-lg dark:text-gray-500">
-                {section.location.country}
-              </p>
-            </div>
+          <div class="mb-1 flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+            <h2 class="font-family-slab text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl dark:text-white">
+              {section.location.city}
+            </h2>
+            <p class="text-base font-light text-gray-500 italic sm:text-lg dark:text-gray-500">
+              {section.location.country}
+            </p>
+          </div>
 
-            <time
-              datetime={section.startDateIso}
-              class="mb-5 block text-xs text-gray-500 italic dark:text-gray-500"
-            >
-              {section.dateRange}
-            </time>
+          <time
+            datetime={section.startDateIso}
+            class="mb-5 block text-xs text-gray-500 italic dark:text-gray-500"
+          >
+            {section.dateRange}
+          </time>
 
-            {section.contentHtml && (
-              <div
-                class="trip-prose mb-5 text-justify text-sm leading-[1.7] hyphens-auto text-gray-700 sm:text-base dark:text-gray-300"
-                set:html={section.contentHtml}
-              />
-            )}
+          {section.contentHtml && (
+            <div
+              class="trip-prose mb-5 text-justify text-sm leading-[1.7] hyphens-auto text-gray-700 sm:text-base dark:text-gray-300"
+              set:html={section.contentHtml}
+            />
+          )}
 
-            <div class="pswp-gallery grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3">
-              {section.images.map((img) => (
-                <a
-                  href={img.fullSrc}
-                  data-pswp-src={img.fullSrc}
-                  data-pswp-width={img.width}
-                  data-pswp-height={img.height}
-                  class="group relative block overflow-hidden rounded-lg ring-1 ring-black/5 dark:ring-white/10"
-                >
-                  <img
-                    src={img.thumbSrc}
-                    alt={`${section.location.city}, ${section.location.country}`}
-                    loading="lazy"
-                    decoding="async"
-                    class="block aspect-[4/3] w-full cursor-zoom-in object-cover transition-transform duration-300 group-hover:scale-[1.04]"
-                  />
-                </a>
-              ))}
-            </div>
-          </section>
-        );
-      })
-    }
+          <div class="pswp-gallery grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3">
+            {section.images.map((img) => (
+              <a
+                href={img.fullSrc}
+                data-pswp-src={img.fullSrc}
+                data-pswp-width={img.width}
+                data-pswp-height={img.height}
+                class="group relative block overflow-hidden rounded-lg ring-1 ring-black/5 dark:ring-white/10"
+              >
+                <img
+                  src={img.thumbSrc}
+                  alt={`${section.location.city}, ${section.location.country}`}
+                  loading="lazy"
+                  decoding="async"
+                  class="block aspect-[4/3] w-full cursor-zoom-in object-cover transition-transform duration-300 group-hover:scale-[1.04]"
+                />
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })}
   </main>
 </Layout>
 
