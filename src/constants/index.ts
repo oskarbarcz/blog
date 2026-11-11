@@ -24,10 +24,14 @@ export const HOMEPAGE_LATEST_COUNT = 3;
 
 export const ARTICLES_PER_PAGE = 6;
 
+export const ARTICLE_TOC_LABEL = "Na tej stronie";
+
 export const SITE_ORIGIN = "https://blog.barcz.me";
 export const OG_LOCALE = "pl_PL";
 export const SITE_NAME = "blog.barcz.me";
 export const PUBLISHER_NAME = "Oskar Barcz";
+export const PUBLISHER_URL = "https://barcz.me";
+export const AUTHOR_MORE_LABEL = "Więcej o mnie";
 export const AUTHOR_NAME = "Oskar Barcz";
 export const TWITTER_HANDLE = "@oskarbarcz";
 export const AUTHOR_BIO =

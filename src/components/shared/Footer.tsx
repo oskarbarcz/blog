@@ -2,6 +2,7 @@ import { Footer as FlowbiteFooter } from "flowbite-react";
 import {
   SOCIAL_LINKS,
   PUBLISHER_NAME,
+  PUBLISHER_URL,
   FOOTER_PRIVACY_NOTICE,
 } from "../../constants";
 
@@ -23,7 +24,7 @@ export default function Footer() {
           <div className="font-family-mono text-sm text-gray-600 dark:text-gray-400">
             <span>
               © 1999–{new Date().getFullYear()}{" "}
-              <a href="/" className="hover:underline">
+              <a href={PUBLISHER_URL} className="hover:underline">
                 {PUBLISHER_NAME}
               </a>
             </span>

@@ -8,6 +8,7 @@ import ArchiveContext from "../../components/articles/ArchiveContext.tsx";
 import PhotoSwipeInit from "../../components/shared/PhotoSwipeInit";
 import HeadingAnchors from "../../components/articles/HeadingAnchors";
 import ReadingProgress from "../../components/articles/ReadingProgress";
+import TableOfContents from "../../components/articles/TableOfContents";
 import { render, type CollectionEntry } from "astro:content";
 
 interface Props {
@@ -25,7 +26,11 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props as Props;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
+const toc = headings
+  .filter(({ depth }) => depth === 2 || depth === 3)
+  .map(({ depth, slug, text }) => ({ depth, slug, text }));
+const hasToc = toc.length > 0;
 ---
 
 <Layout>
@@ -40,11 +45,26 @@ const { Content } = await render(entry);
     keywords={entry.data.keywords ?? entry.data.tags}
   />
   <main
-    class="relative mx-auto max-w-5xl px-4 pt-10 pb-16 sm:px-6 lg:px-8 lg:pt-16 lg:pb-24"
+    class:list={[
+      "relative mx-auto px-4 pt-10 pb-16 sm:px-6 lg:px-8 lg:pt-16 lg:pb-24",
+      hasToc
+        ? "max-w-6xl lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-12 xl:grid-cols-[15rem_minmax(0,1fr)] xl:gap-16"
+        : "max-w-[51rem]",
+    ]}
   >
-    <header class="mb-10">
-      {
-        entry.data.coverUrl && (
+    {hasToc && (
+      <aside class="hidden lg:block">
+        <div
+          class="sticky top-24 max-h-[calc(100dvh-8rem)] overflow-y-auto pb-8"
+          data-lenis-prevent
+        >
+          <TableOfContents client:load headings={toc} />
+        </div>
+      </aside>
+    )}
+    <div class="mx-auto max-w-[47rem] min-w-0 lg:mx-0">
+      <header class="mb-10">
+        {entry.data.coverUrl && (
           <div class="mb-6 overflow-hidden rounded-md bg-gray-100 dark:bg-gray-800">
             <img
               src={entry.data.coverUrl}
@@ -54,70 +74,65 @@ const { Content } = await render(entry);
               decoding="async"
             />
           </div>
-        )
-      }
-      <nav class="mb-6">
-        <a
-          href="/articles"
-          class="group/back hover:text-brand-600 dark:hover:text-brand-400 font-family-mono inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
-        >
-          <span
-            class="transition-transform duration-150 group-hover/back:-translate-x-0.5"
-            aria-hidden="true">←</span
+        )}
+        <nav class="mb-6">
+          <a
+            href="/articles"
+            class="group/back hover:text-brand-600 dark:hover:text-brand-400 font-family-mono inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
           >
-          Powrót do listy publikacji
-        </a>
-      </nav>
-      <h1
-        class="font-family-slab text-3xl font-bold tracking-tight text-gray-900 dark:text-white"
-      >
-        {entry.data.title}
-      </h1>
-      <div
-        class="font-family-mono mt-3 flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400"
-      >
-        <time datetime={entry.data.date.toISOString()}>
-          {
-            entry.data.date.toLocaleDateString("pl-PL", {
+            <span
+              class="transition-transform duration-150 group-hover/back:-translate-x-0.5"
+              aria-hidden="true"
+            >
+              ←
+            </span>
+            Powrót do listy publikacji
+          </a>
+        </nav>
+        <h1 class="font-family-plex-serif text-3xl leading-tight font-medium text-balance text-gray-900 sm:text-4xl dark:text-white">
+          {entry.data.title}
+        </h1>
+        <div class="font-family-mono mt-3 flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+          <time datetime={entry.data.date.toISOString()}>
+            {entry.data.date.toLocaleDateString("pl-PL", {
               year: "numeric",
               month: "long",
               day: "numeric",
-            })
-          }
-        </time>
-        <span aria-hidden="true">•</span>
-        <span>{entry.data.readTime}</span>
-        {
-          entry.data.tags?.length ? (
+            })}
+          </time>
+          <span aria-hidden="true">•</span>
+          <span>{entry.data.readTime}</span>
+          {entry.data.tags?.length ? (
             <>
               <span aria-hidden="true">•</span>
               <ArticleTags client:load tags={entry.data.tags} />
             </>
-          ) : null
-        }
-      </div>
-    </header>
+          ) : null}
+        </div>
+      </header>
 
-    {entry.data.tags?.includes("archive") && <ArchiveContext client:load />}
+      {entry.data.tags?.includes("archive") && <ArchiveContext client:load />}
 
-    {
-      entry.data.tags?.includes("reactionary") &&
+      {entry.data.tags?.includes("reactionary") &&
         entry.data.reactionaryContext && (
           <ReactionaryContext
             client:load
             context={entry.data.reactionaryContext}
           />
-        )
-    }
+        )}
 
-    <PhotoSwipeInit client:load />
-    <HeadingAnchors client:load />
-    <ReadingProgress client:load />
+      <PhotoSwipeInit client:load />
+      <HeadingAnchors client:load />
+      <ReadingProgress client:load />
 
-    <article class="article-content pswp-gallery wrap-break-word">
-      <Content />
-    </article>
+      <article
+        class="article-content article-content--editorial pswp-gallery wrap-break-word"
+        data-article-body
+      >
+        <Content />
+      </article>
 
-    <AuthorSection />
+      <AuthorSection />
+    </div>
   </main>
 </Layout>

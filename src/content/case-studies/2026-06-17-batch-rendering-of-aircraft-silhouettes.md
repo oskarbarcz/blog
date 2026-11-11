@@ -65,8 +65,9 @@ I used OpenAI's `gpt-image-2` model via API for generation, combined with determ
 - **Time: ~30 minutes** (limited by OpenAI rate limits on a new account)
 
 Examples:
-| Airbus A320-200 in Lufthansa livery | Airbus A320neo in Air Canada default livery | Airbus A350-900 in Finnair unique _Marimekko Kivet_ livery |
-|------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+| Airbus A320-200 in Lufthansa livery                                                                                          | Airbus A320neo in Air Canada default livery                                                                                          | Airbus A350-900 in Finnair unique _Marimekko Kivet_ livery                                                                                           |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ![Airbus A320-200 in Lufthansa livery](/photos/article/2026-06-17-case-study-on-ai-image-generation/liveries_poc/a20nlh.png) | ![Airbus A320neo in Air Canada default livery](/photos/article/2026-06-17-case-study-on-ai-image-generation/liveries_poc/a20nac.png) | ![Airbus A350-900 in Finnair unique _Marimekko Kivet_ livery](/photos/article/2026-06-17-case-study-on-ai-image-generation/liveries_poc/a350fin.png) |
 
 Need broader context? Let me invite you to full content below!

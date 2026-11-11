@@ -11,7 +11,7 @@ export default function ReactionaryContext({
   const htmlContent = marked.parse(context);
 
   return (
-    <div className="mx-auto mb-5 max-w-[72ch]">
+    <div className="mb-5">
       <div className="border-brand-100 bg-brand-50/50 dark:border-brand-400/20 dark:bg-brand-400/5 rounded-xl border p-6">
         <div className="mb-4 flex shrink-0 items-center gap-3">
           <div className="bg-brand-100 text-brand-600 dark:bg-brand-400/20 dark:text-brand-400 flex h-10 w-10 shrink-0 items-center justify-center rounded-full">

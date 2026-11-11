@@ -30,6 +30,40 @@
   font-size: 1.25rem;
 }
 
+/*
+ * Editorial variant used by the article page: IBM Plex Sans body,
+ * IBM Plex Serif headings. Width comes from the page's content column;
+ * 19px in the full-width column keeps lines around 80 characters.
+ */
+.article-content--editorial {
+  max-width: none;
+  margin-inline: 0;
+  font-family: var(--font-family-plex-sans);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+@media (width >= 48rem) {
+  .article-content--editorial {
+    font-size: 1.1875rem;
+  }
+}
+
+.article-content--editorial :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-family-plex-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.article-content--editorial h2 {
+  font-size: 1.75rem;
+  margin-top: 2em;
+}
+
+.article-content--editorial h3 {
+  font-size: 1.375rem;
+}
+
 .article-content .heading-anchor {
   display: inline-flex;
   align-items: center;
