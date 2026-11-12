@@ -17,6 +17,7 @@ export async function GET() {
       role: e.data.role,
       date: e.data.date.toISOString(),
       city: e.data.city,
+      place: e.data.place,
       description: e.data.description,
       organizer: e.data.organizer,
       photos: (e.data.photos ?? []).map(toAbsolute),
