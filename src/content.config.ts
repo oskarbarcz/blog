@@ -31,6 +31,13 @@ const events = defineCollection({
     role: z.enum(["guest", "speaker", "panelist", "participant", "organizer"]),
     date: z.date(),
     city: z.string(),
+    place: z
+      .object({
+        name: z.string(),
+        url: z.url().optional(),
+        logo: z.url().nullable().optional(),
+      })
+      .optional(),
     description: z.string(),
     organizer: z.object({
       name: z.string(),

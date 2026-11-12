@@ -17,6 +17,11 @@ export interface EventItemData {
   role: "guest" | "speaker" | "panelist" | "participant" | "organizer";
   date: string;
   city: string;
+  place?: {
+    name: string;
+    url?: string;
+    logo?: string | null;
+  };
   description: string;
   organizer: {
     name: string;
@@ -33,7 +38,7 @@ interface EventItemProps {
 export default function EventItem({ event }: EventItemProps) {
   const date = new Date(event.date);
   const hasPhotos = (event.photos?.length ?? 0) > 0;
-  const { links } = event;
+  const { links, place } = event;
 
   return (
     <TimelineItem>
@@ -59,12 +64,38 @@ export default function EventItem({ event }: EventItemProps) {
             </div>
           </div>
 
-          <div className="mt-1 flex w-full items-center gap-1 text-xs text-gray-600 dark:text-gray-400">
-            <FaLocationDot
-              className="text-brand-600 dark:text-brand-400 h-3.5 w-3.5"
-              aria-hidden="true"
-            />
+          <div
+            className={`mt-1 flex w-full items-center text-xs text-gray-600 dark:text-gray-400 ${place?.logo ? "gap-2" : "gap-1"}`}
+          >
+            {place?.logo ? (
+              <img
+                src={place.logo}
+                alt={`${place.name} logo`}
+                className="h-4 w-4 rounded-sm bg-white object-contain ring-1 ring-gray-200 dark:bg-gray-800 dark:ring-gray-700"
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <FaLocationDot
+                className="text-brand-600 dark:text-brand-400 h-3.5 w-3.5"
+                aria-hidden="true"
+              />
+            )}
             <span className="max-w-[18rem] truncate sm:max-w-none">
+              {place &&
+                (place.url ? (
+                  <a
+                    href={place.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-brand-600 dark:hover:text-brand-400 underline decoration-gray-300 underline-offset-2 dark:decoration-gray-600"
+                  >
+                    {place.name}
+                  </a>
+                ) : (
+                  place.name
+                ))}
+              {place && ", "}
               {event.city}
             </span>
           </div>
