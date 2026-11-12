@@ -13,6 +13,9 @@ organizer:
   name: "Konferencja NextGen AI"
 photos:
   - "/photos/events/2026-04-01-konferencja-nextgen-ai/0.jpg"
+  - "/photos/events/2026-04-01-konferencja-nextgen-ai/1.jpg"
+  - "/photos/events/2026-04-01-konferencja-nextgen-ai/2.jpg"
+  - "/photos/events/2026-04-01-konferencja-nextgen-ai/3.jpg"
 links:
   linkedin: "https://www.linkedin.com/feed/update/urn:li:activity:7444281012353908736/"
 ---

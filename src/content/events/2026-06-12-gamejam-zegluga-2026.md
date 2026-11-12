@@ -1,5 +1,5 @@
 ---
-title: "GameJam Żegluga 2026"
+title: "Wiosenny GameJam Żegluga 2026"
 role: organizer
 date: 2026-06-12
 city: "Kędzierzyn-Koźle, Polska"
